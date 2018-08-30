@@ -1,0 +1,1288 @@
+/*
+ Theme Name:   Indian Hockey
+ Theme URI:    http://indianhockey.net
+ Description:  Indian Hockey Theme
+ Author:       Sarvesh Acharya
+ Author URI:   http://sarveshacharya.com
+ Template:     twentyseventeen
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  indianhockey
+*/
+
+@font-face {
+    font-family: 'Gotham-Black';
+    src: url('assets/fonts/Gotham-Black.woff2') format('woff2'),
+        url('assets/fonts/Gotham-Black.woff') format('woff'),
+        url('assets/fonts/Gotham-Black.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GothamBook';
+    src: url('assets/fonts/GothamBook.woff2') format('woff2'),
+        url('assets/fonts/GothamBook.woff') format('woff'),
+        url('assets/fonts/GothamBook.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham-Light';
+    src: url('assets/fonts/Gotham-Light.woff2') format('woff2'),
+        url('assets/fonts/Gotham-Light.woff') format('woff'),
+        url('assets/fonts/Gotham-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gotham-Bold';
+    src: url('assets/fonts/Gotham-Bold.woff2') format('woff2'),
+        url('assets/fonts/Gotham-Bold.woff') format('woff'),
+        url('assets/fonts/Gotham-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body{
+    color: #333333 !important;
+    font-size: 16px !important;
+    font-weight: 400;
+    font-family: 'GothamBook';
+}
+p{
+    font-size: 13px;
+    line-height: 23px;
+}
+small.small{
+    font-size: 70%;
+}
+hr{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+h1, h2, h3, h4, h5, h6{
+    color: #333;
+}
+h2{
+    font-size: 30px;
+}
+b{
+    font-family: "Gotham-Bold";
+}
+.font-weight-light{
+    font-family: "Gotham-Light" !important;
+}
+@media (min-width: 1200px){
+    .container {
+        max-width: 1230px;
+    }
+}   
+
+@media (max-width: 768px){
+    
+}
+
+/*====== Custom Button =======*/
+.btn-round{
+    border-radius: 4px !important;
+}
+.btn{
+    border-radius: 0 !important;
+    min-width: 142px;
+    font-family: 'Gotham-Light';
+    padding: 0.40rem .7rem;
+}
+.btn-sm{
+    min-width: 120px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.btn-primary {
+  background-color: transparent !important;
+  border: 1px solid #333333 !important;
+  color: #333333 !important;
+}
+
+/*====== Brand Background Colors =======*/
+.bg-light{
+    background-color: #f2f2f2 !important;
+}
+.bg-white{
+    background-color: #fff !important;
+}
+.text-black {
+  color: #000 !important;
+}
+.text-faded{
+    color: rgba(255,255,255,.8) !important;
+}
+
+/*====== Layout =======*/
+section {
+  padding: 120px 0 20px;
+}
+.section-heading{
+    margin-bottom: 27px;
+    font-weight: 100;
+}
+.section-heading.spacing{
+    letter-spacing: .5px;
+}
+.section-heading h2{
+    font-size: 39px;
+    line-height: 43px;
+    margin-bottom: 20px;
+    font-family: 'Gotham-Light';
+}
+.section-heading b{
+
+}
+.section-heading p{
+    font-size: 16px;
+}
+.section-heading .filter{
+    font-size: 18px;
+    margin-left: 28px;
+}
+.section-heading .filter select{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0 !important;
+
+}
+.box-shadow{
+    box-shadow: 3px 0px 35px 0px rgba(158, 152, 152, .35);
+}
+.img-fluid{
+    width: 100%;
+}
+
+/*====== Navigation =======*/
+.navbar{
+    width: 100%;
+    z-index: 999;
+    top: 0;
+    transition: .3s;
+    display: block;
+}
+.navbar .navbar-nav a{
+    font-size: 14px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 9;
+    font-family: "Gotham-Light";
+    color: #1d2124 !important;
+    display: inline;
+    padding: 2px 0 !important;
+}
+.navbar .navbar-nav .menu-item{
+    margin: 0 15px;
+}
+.navbar .navbar-nav .menu-item:last-child{
+    margin-right: 0;
+}
+.navbar .navbar-nav .menu-item.current-menu-item a,
+.navbar .navbar-nav .menu-item a:hover{
+    text-decoration: none;
+}
+.navbar .navbar-nav .menu-item.current-menu-item a{
+    background-color: #fff;
+    font-weight: bold;
+}
+.navbar .navbar-nav .menu-item.current-menu-item a:before{
+    content: "";
+    background-image: url(assets/images/menu-active.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    height: 65px;
+    width: 100%;
+    z-index: -1;
+    bottom: 10px;
+    top: -25px;
+    width: 50px;
+    left: -8px;
+}
+.brand-logo img{
+    width: 95px;
+}
+
+/*====== Slider Arrows  =======*/
+.slick-arrow{
+    background: transparent;
+    border: none;
+    font-size: 0;
+    position: absolute;
+    bottom: 10px;
+    left: -10px;
+    cursor: pointer;
+    z-index: 999;
+    outline: none !important;
+}
+.slick-disabled{
+    opacity: .4;
+}
+.slick-next{
+    left: 60px;
+}
+.slick-prev:before, .slick-next:before{
+    content: "";
+    background-image: url(assets/images/slide-arrow.png);
+    width: 30px;
+    height: 16px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.slick-next:before{
+
+}
+.slick-prev:before{
+    transform: rotate(180deg);
+}
+
+
+/*====== Homepage  =======*/
+
+/*== Hero ==*/
+.hero__content--title{
+    font-size: 80px;
+    line-height: 85px;
+    font-family: "Gotham-Light";
+    font-weight: 100;
+    text-indent: -6px;
+}
+.hero__content--title span{
+    font-size: 95px;
+    line-height: 97px;
+    font-family: "Gotham-Bold";
+}
+.hero__content--title b{
+    font-family: "Gotham-Bold";
+    display: block;
+    letter-spacing: 2px;
+    text-indent: -2px;
+}
+.hero__nav .slick-track{
+    width: 100% !important;
+    transform: translate3d(0, 0px, 0px) !important;
+}
+.hero__nav .slick-slide{
+    width: 31.33%;
+    padding-right: 15px;
+}
+.hero__nav .slick-slide:nth-child(3){
+    padding-left: 15px;
+}
+/*.hero__nav .slick-current .hero__nav--item{
+    background-color: #f2f2f2;
+}*/
+.home .hero__nav .slick-slide .hero__nav--item{
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    max-height: 72px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.home .hero__nav .slick-slide.slick-current>div{
+    background-color: #f2f2f2;
+}
+.home .hero__nav .slick-slide>div{
+    padding-bottom: 6px;
+    padding-top: 2px;
+}
+.home .hero__content--title{
+    max-height: 340px;
+    overflow: hidden;
+    /*display: -webkit-box !important;*/
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    font-size: 85px;
+    line-height: 87px;
+    margin-bottom: 60px;
+}
+.hero__nav--item{
+    line-height: 21px;
+    cursor: pointer;
+}
+.hero__nav--item:hover, .home .hero__nav .slick-slide>div:hover{
+    background-color: #f2f2f2;
+}
+.hero .hero__body div{
+    height: 100%;
+}
+.hero .hero__image{
+    height: 100%;
+}
+.hero .hero__body .hero__image{
+    display: flex !important;
+    justify-content: center;
+    flex-direction: column;
+}
+.hero .hero__image img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%)
+}
+/*== Hero End ==*/
+
+
+/*== News with video ==*/
+
+
+/*== News with video End==*/
+.news_video .container.mt-2{
+    margin-top: 5px !important;
+}
+.news_video__item{
+    
+}
+.news_video__content .slick-list{
+    /*overflow: visible;*/
+/*padding:0 20% 0 0;*/
+}
+/*.news_video__content .slick-arrow{
+    width: 1200px;
+    left: 50% !important;
+    transform: translateX(-50%);
+    bottom: 33px;
+    height: 20px;
+}
+.news_video__content .slick-prev:before, 
+.news_video__content .slick-next:before{
+    position: absolute;
+    bottom: 0;
+}
+.news_video__content .slick-prev:before{
+    left: 0;
+}
+.news_video__content .slick-next{
+    margin-left: 68px;
+}
+.news_video__content .slick-next:before{
+    left: 0;
+}*/
+
+
+.news_video__content .slick-slide{
+    /*width: auto !important;*/
+    margin: auto;
+}
+
+.news_video__content .news_video__item .section-heading{
+    margin-bottom: 10px;
+}
+.news_video__content .news_video__item .section-heading+p{
+    font-size: 16px;
+    max-width: 380px;
+    margin-bottom: 27px;
+}
+.news_video__content .news_video__item .section-heading h2{
+
+}
+.news_video__content .news_video__item p{
+    max-width: 480px;
+
+}
+
+@media (max-width: 1200px){
+    .news_video__content .slick-slide {
+        max-width: none;
+        overflow: hidden;
+        margin: auto;
+        width: 95%;
+    }
+}
+@media (max-width: 992px){
+    .news_video__content, .news_video__content .slick-slide {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        overflow: hidden;
+    }
+
+    /*.news_video__content .slick-arrow{
+        left: 30px !important;
+        transform: translateX(0);
+    }*/
+    .news_video__item.right .row {
+        flex-direction: column-reverse;
+    }
+    .news_video__item.right .row .mt-4 {
+        margin-top: 0 !important;
+    }
+    .blog__hero__slider--inner .blog__single__image{
+
+    }
+    .blog__hero__slider--inner .blog__single__image img{
+        position: static !important;
+        transform: translateX(0) !important;
+    }
+}
+
+.news_video__item--video{
+    position: relative;
+}
+.videoPoster .icon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 122px;
+    margin-left: -56px;
+    margin-top: -57px;
+}
+.video_wrapper_full {
+  padding-top: 466px;
+}
+.videoIframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+.videoPoster {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    text-indent: -999em;
+    overflow: hidden;
+    opacity: 1;
+    -webkit-transition: opacity 800ms, height 0s;
+    -moz-transition: opacity 800ms, height 0s;
+    transition: opacity 800ms, height 0s;
+    -webkit-transition-delay: 0s, 0s;
+    -moz-transition-delay: 0s, 0s;
+    transition-delay: 0s, 0s;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.videoPoster:hover {
+  cursor: pointer;
+}
+.videoPoster:before {
+  /*content: '';*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+  border: 5px solid #fff;
+  border-radius: 100%;
+  -webkit-transition: border-color 300ms;
+  -moz-transition: border-color 300ms;
+  transition: border-color 300ms;
+}
+.videoWrapperActive .videoPoster {
+  opacity: 0;
+  height: 0;
+  -webkit-transition-delay: 0s, 800ms;
+  -moz-transition-delay: 0s, 800ms;
+  transition-delay: 0s, 800ms;
+}
+
+/*== News ==*/
+
+.news__card{
+    position: relative;
+}
+.news__card--thumbnail{
+    max-width: 240px;
+}
+.news__featured{
+    height: 574px;
+    overflow: hidden;
+}
+.news__featured--image{
+    height: 100%;
+    overflow: hidden;
+}
+.news__featured--image img{
+    height: 100%;
+    width: auto;
+    max-width: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%)
+}
+.news__card.news__featured:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0,.56);
+    z-index: 1;
+}
+.news__featured__home{
+    margin-top: -4px;
+}
+.news__featured__content{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    padding: 10px 36px 25px 36px;
+    z-index: 99;
+}
+.news__featured__content--title{
+    line-height: 30px;
+    margin-bottom: 10px;
+    letter-spacing: 1.2px;
+}
+.news__content__cards .col-6:first-child{
+    max-height: 148px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.news__content__cards .col-6:first-child img{
+    width: auto;
+    height: 100%;
+}
+.news__content__cards--right{
+    margin-top: -10px;
+}
+.news__featured__content--action a{
+    min-width: auto;
+    padding: 5px 14px;
+}
+.news__featured .news__featured__content--action a{
+    min-width: auto;
+    padding: 5px 27px;
+}
+.news__content__panel{
+    padding-bottom: 0 !important;
+}
+.news__content__panel .slick-arrow{
+    bottom: 20px;
+    left: 0px;
+}
+.news__content__panel .slick-next{
+    left: 70px;
+}
+.news__content__cards hr:last-child{
+    display: none;
+}
+/*== News End ==*/
+
+
+/*== Podcast ==*/
+.podcast__card{
+    position: relative;
+    display: block;
+    box-shadow: 3px 0px 35px 0px rgba(158, 152, 152, .35);
+}
+.podcast__card{
+    max-width: 160px;
+    margin: auto;
+    background: #000;
+}
+.podcast__card--icon{
+    position: absolute;
+    bottom: -26px;
+    left: 50%;
+    margin-left: -26px;
+    width: 52px;
+    height: 52px;
+    box-shadow: 3px 0px 35px 0px rgba(158, 152, 152, .35);
+    background-color: #fff;
+    color: #626262;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 52px;
+    transition: .2s;
+}
+.podcast__card:hover .podcast__card--icon{
+    background-color: #1d59ac;
+    color: #fff;
+}
+.podcast__card:hover img{
+    opacity: .2;
+}
+.podcast__card--icon:before{
+    content: "\f04b";
+    font-family: 'FontAwesome';
+    transition: .1s;
+}
+.podcast__card:hover .podcast__card--icon:before{
+    content: "\f04c";
+}
+/*== Podcast End ==*/
+
+
+/*== Team players ==*/
+.team__list--player{
+    padding: 7px 18px 7px 25px;
+    transition: .3s;
+    display: block;
+    color: #333333;
+    text-decoration: none !important;
+    outline: none;
+    margin-bottom: 2.5px;
+}
+.team__list--player:hover, .team__list--player.active{
+    box-shadow: 3px 0px 35px 0px rgba(158, 152, 152, .35);
+    color: #1e59ac;
+}
+.team__list--player span{
+    margin-top: 6px;
+    display: inline-block;
+}
+.team__list--player span.team__list--player--thumbnail{
+    margin-top: 0;
+}
+.team__list--player:hover .team__list--player--thumbnail,
+.team__list--player.active .team__list--player--thumbnail{
+    visibility: visible;
+    opacity: 1;
+}
+.team__list--player--thumbnail{
+    visibility: hidden;
+    opacity: 0;
+    float: right;
+    transition: .3s;
+    margin-top: -2px;
+}
+.team__player__active__content{
+    margin-left: -.25rem;
+}
+.team__player__active{
+    padding: 55px 25px 20px 26px !important;
+    background-color: #1d59ac;
+    margin-top: 8px;
+}
+.team__player__active--thumbnail img{
+    background-color: #1e59ac;
+    border-color: #1e59ac;
+    box-shadow: 3px 0px 35px 0px rgba(0, 0, 0, .2);
+}
+.team__player__active--info{
+    color: rgba(255,255,255,.8);
+}
+.team__list .slick-arrow{
+    position: absolute;
+    bottom: auto;
+    right: -2px;
+    z-index: 99;
+    left: auto !important;
+}
+.team__list .slick-next{
+    left: auto !important;
+    bottom: 15px;
+}
+.team__list .slick-prev{
+    top: 10px;
+}
+.team__list .slick-next:before{
+    transform: rotate(90deg);
+}
+.team__list .slick-prev:before{
+    transform: rotate(270deg);
+}
+/*== Team players End ==*/
+
+
+/*== Blog ==*/
+.featured-blog{
+    padding-top: 60px;
+}
+.featured-blog__content{
+    background-image: url(assets/images/blog-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding-top: 296px;
+}
+.overlay:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0,.56);
+    z-index: 1;
+}
+.featured-blog__content .row, .featured-blog__content--innner{
+    position: relative;
+    z-index: 9;
+}
+.featured-blog__tabs--item{
+    padding: 55px 55px 25px 55px;
+    font-family: 'Gotham-Light';
+}
+.featured-blog__tabs a{
+    color: #333;
+    text-decoration: none;
+}
+.featured-blog__tabs--separator{
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    margin-top: -27px;
+    top: 50%;
+}
+.featured-blog__tabs--separator:before{
+    content: "";
+    width: 55px;
+    height: 1px;
+    background-color: #333;
+    display: inline-block;
+    position: absolute;
+    margin-top: 27px;
+}
+.featured-blog__tabs--separator:after{
+    content: "";
+    height: 55px;
+    width: 1px;
+    background-color: #333;
+    display: inline-block;
+    position: absolute;
+    margin-left: 27px;
+}
+.featured-blog__content--innner{
+    padding: 73px 50px 30px 35px;
+}
+.featured-blog__content--innner h2{
+    line-height: 32px;
+}
+@media (max-width: 768px){
+    .featured-blog__tabs{
+
+    }
+    .featured-blog__tabs--item{
+        padding: 20px !important;
+        text-align: left;
+    }
+    .featured-blog__tabs--separator{
+        display: none;
+    }
+}
+/*== Blog ==*/
+
+
+/*== World Ranking ==*/
+.world-ranking__content table{
+    font-size: 13px;
+    border-spacing: 0 7px;
+    border-collapse: separate;
+}
+.world-ranking__content table thead tr{
+    background-color: transparent;
+}
+.world-ranking__content table thead th{
+    border: none;
+}
+.world-ranking__content table tr{
+    background-color: #fbfbfb;
+    border: 1px solid transparent;
+    line-height: 25px;
+}
+.world-ranking__content table td{
+    vertical-align: middle;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    padding: 10px;
+}
+.world-ranking__content table td:nth-child(2){
+    width: 183px;
+}
+.world-ranking__content table td:nth-child(2) b {
+    margin-left: 10px;
+    font-size: 16px;
+}
+.world-ranking__content table td:first-child{
+    border-left: 1px solid transparent;
+    padding: 10px 25px;
+    width: 120px;
+}
+.world-ranking__content table td:last-child{
+    border-right: 1px solid transparent;
+    text-align: right;
+    padding-right: 28px;
+    font-size: 14px;
+}
+.world-ranking__content table tr:hover{
+    background-color: #fff;
+}
+.world-ranking__content table tr:hover td{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.world-ranking__content table tr:hover td:first-child{
+    border-left: 1px solid #ccc;;
+}
+.world-ranking__content table tr:hover td:last-child{
+    border-right: 1px solid #ccc;;
+}
+.world-ranking__content .arrow{
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 11px;
+}
+.world-ranking__content .arrow-up{
+    border-bottom: 12px solid #5db64c;
+}
+.world-ranking__content .arrow-left{
+    border-right: 12px solid #959595;
+    border-bottom: 7px solid transparent;
+    border-top: 7px solid transparent;
+}
+.world-ranking__content .arrow-down{
+    border-top: 12px solid #e93f33;
+}
+
+/*== World Ranking End ==*/
+.featured-social__content__item--content{
+    display: block;
+    max-width: 85%;
+    margin: -38px auto;
+    background: #fff;
+    position: relative;
+    padding: 10px;
+}
+/*====== Homepage  End =======*/
+
+
+/*====== Blog page single =======*/
+.blog .hero__content--title{
+    line-height: 81px;
+}
+.blog .hero__content--title b{
+    letter-spacing: 0px;
+}
+.blog .featured-blog__content--innner{
+    padding: 89px 50px 30px 58px;
+}
+.blog__single__title{
+    margin-top: 0 !important;
+    margin-top: 45px !important;
+    padding-bottom: 40px;
+}
+.blog__single__title .section-heading{
+    margin-top: 72px;
+}
+.blog__single__title .section-heading h2{
+    line-height: 47px;
+}
+.blog__single p{
+    margin-bottom: 24px;
+    font-size: 14.4px;
+    line-height: 24px;
+}
+.blog__single__content img {
+    width: 100%;
+}
+.blog__hero__slider--inner .blog__single__image{
+    display: flex !important;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.blog__hero__slider--inner .blog__single__image img{
+    height: 100%;
+    width: auto;
+    max-width: none;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/*====== Blog page single End =======*/
+
+/*====== Blog page =======*/
+.blog__featured__post{
+    background-image: url(assets/images/blog-featured-post.jpg);
+}
+.blog__posts__card{
+    position: relative;
+    min-height: 445px;
+    max-height: 445px;
+    overflow: hidden;
+}
+.blog__posts__card .post-thumbnail a{
+
+}
+.blog__posts__card .post-thumbnail img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    left: 50%;
+    right: 0;
+    position: absolute;
+    transform: translateX(-50%);
+}
+.blog__posts__card__content{
+    position: absolute;
+    bottom: 0;
+    z-index: 99;
+    padding: 22px 22px 24px;
+}
+.blog__posts__card--special .blog__posts__card--title h2{
+    line-height: 2rem;
+}
+@media (max-width: 992px){
+    .blog .hero__content{
+        margin-bottom: 30px;
+        margin-top: 0 !important;
+    }   
+    .home.hero{
+        margin-bottom: 0 !important;
+    }
+}
+/*====== Blog page End =======*/
+
+
+/*====== News page single Start =======*/
+
+.news__content--title{
+    font-size: 79px;
+    line-height: 82px;
+    font-family: "Gotham-Light";
+    font-weight: 100;
+    max-height: 320px;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    font-size: 85px;
+    line-height: 87px;
+    margin-bottom: 60px;
+}
+.news__content--title b {
+    font-family: "Gotham-Bold";
+    display: block;
+    letter-spacing: 0px;
+}
+.news .news__content--title{
+    line-height: 80px;
+}
+.news .news__content p{
+    font-size: 14px;
+}
+/*====== News page single End =======*/
+
+
+/*====== News Start =======*/
+.articles header h2.sticky-entry-title {
+    font-size: 100px;
+    line-height: 100px;
+    color: rgb(51,51,51);
+    font-family: "Gotham-Bold";
+    font-weight: 300;
+}
+.articles header p strong {
+    font-size: 20px;
+    line-height: 30px;
+    color: rgb(51,51,51);
+    font-family: "Gotham-Light";
+}
+.blog.articles section .card-deck .card {
+    border: none;
+}
+.blog.articles section .card-deck .card .card-body {
+    padding-left: 0;
+    padding-right: 0;
+}
+.blog.articles section .card-deck .card .card-footer {
+    padding-left: 0;
+    padding-right: 0;
+    background: none;
+    border: none;
+}
+
+.blog.articles section .card-deck .card .card-body .card-info .date {
+    font-size: 14px;
+    line-height: 30px;
+    color: rgb(98,98,98);
+    font-family: "Gotham-Light";
+}
+
+.blog.articles section .card-deck .card .card-body .card-title {
+    font-size: 20px;
+    line-height: 25px;
+    color: rgb(51,51,51);
+    font-family: "Gotham-Light";
+    font-weight: 300;
+}
+.news.articles section .card-deck{
+    margin-top: -5px;
+}
+.news.articles section .card-deck .card{
+    margin: 0;
+}
+
+.news.articles section .card-deck .col-lg-4:nth-last-child(1),
+.news.articles section .card-deck .col-lg-4:nth-last-child(2),
+.news.articles section .card-deck .col-lg-4:nth-last-child(3){
+    margin-bottom: 0;
+}
+.news.articles section .card-deck .col-lg-4{
+    margin-bottom: 0;
+}
+.news.articles section .card-deck .col-lg-4:nth-child(3n+1){
+    padding-right: 35px;
+}
+.news.articles section .card-deck .col-lg-4:nth-child(3n+2){
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.news.articles section .card-deck .col-lg-4:nth-child(3n+3){
+    padding-left: 35px;
+}
+.news.articles section .card-deck .card-info{
+
+}
+.news.articles section .card-deck .card .card-body{
+    padding-bottom: 10px;
+}
+.news.articles section .card-deck .card .card-body .card-info .date{
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+.news.articles section .card-deck .card .card-body .card-title{
+    margin-top: 7px;
+    font-size: 16px;
+    line-height: 22px;
+}
+/*====== News End =======*/
+
+
+/*====== Team Page =======*/
+.team .hero__content--title{
+    font-size: 95px;
+}
+.team__info--image{
+    flex: 0 0 63%;
+    max-width: 63%;
+    background-color: #a5a8ad;
+}
+.team__info--content{
+    padding: 93px 60px 60px 56px;
+    position: relative;
+    flex: 0 0 37%;
+    max-width: 37%;
+    background-color: #a5a8ad;
+}
+.team__info--title{
+    font-size: 80px;
+    line-height: 80px;
+    font-family: 'Gotham-Bold';
+    color: #fff;
+    margin-left: -3px;
+}
+.team__info--info{
+    font-size: 20px;
+    font-family: 'Gotham';
+    list-style: none;
+    margin: 41px 0 44px;
+    line-height: 39px;
+    padding: 0;
+}
+.team__info--info li span{
+    font-family: 'Gotham-Light';
+}
+.team__info--about p{
+    font-size: 16px;
+    font-family: 'Gotham-Light';
+}
+.team__info--publish-date{
+    color: #fff;
+    position: absolute;
+    bottom: 30px;
+}
+.team__info__slider .slick-dots{
+    position: absolute;
+    padding: 0;
+    bottom: 30px;
+    left: 110px;
+    margin: 0;
+}
+.team__info__slider .slick-dots li{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 10px;
+}
+.team__info__slider .slick-dots li button{
+    background: transparent;
+    border: none;
+    font-size: 0;
+    outline: none;
+    cursor: pointer;
+}
+.team__info__slider .slick-dots li button:before{
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: content-box !important;
+    transition: .2s;
+}
+.team__info__slider .slick-dots li.slick-active button:before{
+    border-width: 16px;
+    width: 8px;
+    height: 8px;
+}
+@media (max-width: 992px){
+    .team__info--content, .team__info--image{
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+    .team__info--publish-date{
+        position: static;
+    }
+    .team__info__slider .slick-dots{
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+
+/*====== Team Page End =======*/
+/*====== Homepage  Responsive =======*/
+@media (max-width: 992px){
+    section{
+        padding: 40px 0 20px;
+    }
+    .hero__content--title{
+        font-size: 50px;
+        line-height: 55px !important;
+        text-indent: 0;
+    }
+    .hero__content--title span{
+        font-size: 50px;
+        line-height: 55px;
+    }
+    .slick-arrow{
+        bottom: -30px
+    }
+    .news__featured__home .col-md-12.pr-0{
+        padding-right: 15px !important;
+    }
+    .news__featured{
+        margin-bottom: 40px;
+        height: auto;
+    }
+    .news__featured--image img{
+        position: static;
+        width: 100%;
+        height: auto;
+        transform: translateX(0)
+    }
+    .news__featured__content--title{
+        font-size: 20px;
+        line-height: 22px;
+    }
+    .news__featured__content{
+        padding: 15px;
+    }
+    .news__content__cards .col-6{
+        padding: 0px 15px !important;
+    }
+    .news__featured__home .col-md-12.pl-5{
+        padding-left: 15px !important;
+    }
+    .featured-blog__content{
+        padding-top: 0;
+    }
+    .featured-blog__content--innner{
+        padding: 20px;
+    }
+    .featured-blog__content--innner h2{
+        line-height: 22px;
+        font-size: 20px;
+    }
+    .team__list{
+        margin-top: 25px;
+    }
+    .podcast .col-md-10.pr-5{
+        padding-right: 15px !important;
+    }
+    .podcast-mic{
+        display: none;
+    }
+    .footer-img img{
+        width: 100%;
+    }
+    .blog__hero__slider{
+        margin-bottom: 50px;
+    }
+    .hero .hero__image img{
+        width: 100%;
+        height: auto;
+        position: static;
+        transform: translateX(0);
+    }
+    .news_video__content .news_video__item .section-heading{
+        margin-left: 0;
+    }
+    .news_video {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .home .hero__content--title{
+        font-size: 50px;
+        line-height: 55px;
+        margin-bottom: 30px;
+    }
+    .news__content--title{
+        font-size: 50px;
+        line-height: 55px !important;
+        padding: 0 !important;
+    }
+    .news.articles section .card-deck .col-lg-4{
+        padding-left: 15px !important;
+        padding-left: 15px !important;
+    }
+    .blog__single__title{
+        margin-top: 20px;
+    }
+}
+/*====== Main Footer =======*/
+.main-footer{
+    padding: 112px 0 23px;
+    color: #6f6f6f;
+}
+.main-footer ul{
+    padding: 0;
+}
+.main-footer ul li{
+    list-style-type: none;
+    margin-bottom: 3px;
+    font-size: 14px;
+    font-family: 'Gotham-Light';
+}
+.main-footer ul li a{
+    color: #6f6f6f;
+}

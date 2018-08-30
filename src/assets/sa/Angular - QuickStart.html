@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://angular.io/guide/quickstart -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Angular - QuickStart</title>
+  <!--<base href="/">--><base href=".">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/x-icon" href="https://angular.io/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="https://angular.io/assets/images/favicons/favicon.ico">
+  <link rel="icon" type="image/png" href="https://angular.io/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://angular.io/assets/images/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="https://angular.io/assets/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="https://angular.io/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://angular.io/assets/images/favicons/favicon-144x144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://angular.io/assets/images/favicons/favicon-144x144.png">
+
+  <!-- NOTE: These need to be kept in sync with `ngsw-manifest.json`. -->
+  <link href="./Angular - QuickStart_files/icon" rel="stylesheet">
+  <link href="./Angular - QuickStart_files/css" rel="stylesheet">
+  <link href="./Angular - QuickStart_files/font-awesome.min.css" rel="stylesheet">
+  <!-- -->
+
+  <link rel="manifest" href="https://angular.io/pwa-manifest.json">
+  <meta name="theme-color" content="#1976d2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="translucent">
+
+  <script async="" src="./Angular - QuickStart_files/analytics.js"></script><script>
+    // Dynamically, pre-emptively, add `noindex`, which will be removed when the doc is ready and valid
+    tag = document.createElement('meta'); tag.name = 'robots'; tag.content = 'noindex';
+    document.head.appendChild(tag);
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+  // Note this is a customised version of the GA tracking snippet
+  // See the comments below for more info
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+  ~i.name.indexOf('NG_DEFER_BOOTSTRAP')|| // only load library if not running e2e tests
+  m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  </script>
+  <!-- End Google Analytics -->
+
+  <script>
+    // Report fatal errors to Google Analytics
+    window.onerror = function() {
+      ga('send', 'exception', {exDescription: formatError.apply(null, arguments), exFatal: true});
+
+      function formatError(msg, url, line, col, e) {
+        var stack;
+        msg = msg.replace(/^Error: /, '');
+        if (e) {
+          stack = e.stack
+              // strip the leading "Error: " from the stack trace
+              .replace(/^Error: /, '')
+              // strip the message from the stack trace, if present
+              .replace(msg + '\n', '')
+              // strip leading spaces
+              .replace(/^ +/gm, '')
+              // strip all leading "at " for each frame
+              .replace(/^at /gm, '')
+              // replace long urls with just the last segment: `filename:line:column`
+              .replace(/(?: \(|@)http.+\/([^/)]+)\)?(?:\n|$)/gm, '@$1\n')
+              // replace "eval code" in Edge
+              .replace(/ *\(eval code(:\d+:\d+)\)(?:\n|$)/gm, '@???$1\n')
+        } else {
+          line = line || '?';
+          col = col || '?';
+          stack = url + ':' + line + ':' + col;
+        }
+        return (msg + '\n' + stack).substr(0, 150);
+      }
+    };
+  </script>
+
+  <script nomodule="" src="./Angular - QuickStart_files/ie-polyfills.min.js"></script>
+
+  <script>
+    //load CE polyfill
+    //HACK: webpack's html plugin mangles the document.write calls if we don't trick it.
+
+    //load the ES5 shim for browsers with native CE support
+    function loadCustomElementsShim(){
+      document.write('<scri' + 'pt src="assets/js/native-shim.js"><' + '/script>');
+    }
+
+    //load the full custom elements polyfill for browsers without support
+    function loadCustomElementsPolyfill(){
+      document.write('<scri' + 'pt src="assets/js/custom-elements.min.js"><' + '/script>');
+    }
+    //detect if we have native CE support
+    if(!window.customElements){
+      loadCustomElementsPolyfill();
+    }
+    else {
+      loadCustomElementsShim();
+    }
+  </script><script src="./Angular - QuickStart_files/native-shim.js"></script>
+
+<link rel="stylesheet" href="./Angular - QuickStart_files/styles.a68c0d32bbce307cee85.css"><style>@media screen and (-ms-high-contrast:active){.mat-toolbar{outline:solid 1px}}.mat-toolbar-row,.mat-toolbar-single-row{display:flex;box-sizing:border-box;padding:0 16px;width:100%;flex-direction:row;align-items:center;white-space:nowrap}.mat-toolbar-multiple-rows{display:flex;box-sizing:border-box;flex-direction:column;width:100%}.mat-toolbar-multiple-rows{min-height:64px}.mat-toolbar-row,.mat-toolbar-single-row{height:64px}@media (max-width:599px){.mat-toolbar-multiple-rows{min-height:56px}.mat-toolbar-row,.mat-toolbar-single-row{height:56px}}</style><style>.mat-icon{background-repeat:no-repeat;display:inline-block;fill:currentColor;height:24px;width:24px}.mat-icon.mat-icon-inline{font-size:inherit;height:inherit;line-height:inherit;width:inherit}[dir=rtl] .mat-icon-rtl-mirror{transform:scale(-1,1)}.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon,.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon{display:block}.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button .mat-icon,.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button .mat-icon{margin:auto}</style><style>.mat-button,.mat-flat-button,.mat-icon-button,.mat-stroked-button{box-sizing:border-box;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer;outline:0;border:none;-webkit-tap-highlight-color:transparent;display:inline-block;white-space:nowrap;text-decoration:none;vertical-align:baseline;text-align:center;margin:0;min-width:88px;line-height:36px;padding:0 16px;border-radius:2px;overflow:visible}.mat-button[disabled],.mat-flat-button[disabled],.mat-icon-button[disabled],.mat-stroked-button[disabled]{cursor:default}.mat-button.cdk-keyboard-focused .mat-button-focus-overlay,.mat-button.cdk-program-focused .mat-button-focus-overlay,.mat-flat-button.cdk-keyboard-focused .mat-button-focus-overlay,.mat-flat-button.cdk-program-focused .mat-button-focus-overlay,.mat-icon-button.cdk-keyboard-focused .mat-button-focus-overlay,.mat-icon-button.cdk-program-focused .mat-button-focus-overlay,.mat-stroked-button.cdk-keyboard-focused .mat-button-focus-overlay,.mat-stroked-button.cdk-program-focused .mat-button-focus-overlay{opacity:1}.mat-button::-moz-focus-inner,.mat-flat-button::-moz-focus-inner,.mat-icon-button::-moz-focus-inner,.mat-stroked-button::-moz-focus-inner{border:0}.mat-button .mat-button-focus-overlay,.mat-icon-button .mat-button-focus-overlay{transition:none;opacity:0}.mat-button:hover .mat-button-focus-overlay,.mat-stroked-button:hover .mat-button-focus-overlay{opacity:1}.mat-raised-button{box-sizing:border-box;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer;outline:0;border:none;-webkit-tap-highlight-color:transparent;display:inline-block;white-space:nowrap;text-decoration:none;vertical-align:baseline;text-align:center;margin:0;min-width:88px;line-height:36px;padding:0 16px;border-radius:2px;overflow:visible;transform:translate3d(0,0,0);transition:background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1)}.mat-raised-button[disabled]{cursor:default}.mat-raised-button.cdk-keyboard-focused .mat-button-focus-overlay,.mat-raised-button.cdk-program-focused .mat-button-focus-overlay{opacity:1}.mat-raised-button::-moz-focus-inner{border:0}.mat-raised-button:not([class*=mat-elevation-z]){box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)}.mat-raised-button:not([disabled]):active:not([class*=mat-elevation-z]){box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mat-raised-button[disabled]{box-shadow:none}.mat-stroked-button{border:1px solid currentColor;padding:0 15px;line-height:34px}.mat-stroked-button:not([class*=mat-elevation-z]){box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mat-flat-button:not([class*=mat-elevation-z]){box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mat-fab{box-sizing:border-box;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer;outline:0;border:none;-webkit-tap-highlight-color:transparent;display:inline-block;white-space:nowrap;text-decoration:none;vertical-align:baseline;text-align:center;margin:0;min-width:88px;line-height:36px;padding:0 16px;border-radius:2px;overflow:visible;transform:translate3d(0,0,0);transition:background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);min-width:0;border-radius:50%;width:56px;height:56px;padding:0;flex-shrink:0}.mat-fab[disabled]{cursor:default}.mat-fab.cdk-keyboard-focused .mat-button-focus-overlay,.mat-fab.cdk-program-focused .mat-button-focus-overlay{opacity:1}.mat-fab::-moz-focus-inner{border:0}.mat-fab:not([class*=mat-elevation-z]){box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)}.mat-fab:not([disabled]):active:not([class*=mat-elevation-z]){box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mat-fab[disabled]{box-shadow:none}.mat-fab:not([class*=mat-elevation-z]){box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)}.mat-fab:not([disabled]):active:not([class*=mat-elevation-z]){box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)}.mat-fab .mat-button-wrapper{padding:16px 0;display:inline-block;line-height:24px}.mat-mini-fab{box-sizing:border-box;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer;outline:0;border:none;-webkit-tap-highlight-color:transparent;display:inline-block;white-space:nowrap;text-decoration:none;vertical-align:baseline;text-align:center;margin:0;min-width:88px;line-height:36px;padding:0 16px;border-radius:2px;overflow:visible;transform:translate3d(0,0,0);transition:background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);min-width:0;border-radius:50%;width:40px;height:40px;padding:0;flex-shrink:0}.mat-mini-fab[disabled]{cursor:default}.mat-mini-fab.cdk-keyboard-focused .mat-button-focus-overlay,.mat-mini-fab.cdk-program-focused .mat-button-focus-overlay{opacity:1}.mat-mini-fab::-moz-focus-inner{border:0}.mat-mini-fab:not([class*=mat-elevation-z]){box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)}.mat-mini-fab:not([disabled]):active:not([class*=mat-elevation-z]){box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mat-mini-fab[disabled]{box-shadow:none}.mat-mini-fab:not([class*=mat-elevation-z]){box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)}.mat-mini-fab:not([disabled]):active:not([class*=mat-elevation-z]){box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)}.mat-mini-fab .mat-button-wrapper{padding:8px 0;display:inline-block;line-height:24px}.mat-icon-button{padding:0;min-width:0;width:40px;height:40px;flex-shrink:0;line-height:40px;border-radius:50%}.mat-icon-button .mat-icon,.mat-icon-button i{line-height:24px}.mat-button-focus-overlay,.mat-button-ripple{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none}.mat-button-focus-overlay{background-color:rgba(0,0,0,.12);border-radius:inherit;opacity:0;transition:opacity .2s cubic-bezier(.35,0,.25,1),background-color .2s cubic-bezier(.35,0,.25,1)}@media screen and (-ms-high-contrast:active){.mat-button-focus-overlay{background-color:rgba(255,255,255,.5)}}.mat-button-ripple-round{border-radius:50%;z-index:1}.mat-button .mat-button-wrapper>*,.mat-fab .mat-button-wrapper>*,.mat-flat-button .mat-button-wrapper>*,.mat-icon-button .mat-button-wrapper>*,.mat-mini-fab .mat-button-wrapper>*,.mat-raised-button .mat-button-wrapper>*,.mat-stroked-button .mat-button-wrapper>*{vertical-align:middle}.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button{display:block;font-size:inherit;width:2.5em;height:2.5em}@media screen and (-ms-high-contrast:active){.mat-button,.mat-fab,.mat-flat-button,.mat-icon-button,.mat-mini-fab,.mat-raised-button{outline:solid 1px}}</style><style>.mat-drawer-container{position:relative;z-index:1;box-sizing:border-box;-webkit-overflow-scrolling:touch;display:block;overflow:hidden}.mat-drawer-container[fullscreen]{top:0;left:0;right:0;bottom:0;position:absolute}.mat-drawer-container[fullscreen].mat-drawer-opened{overflow:hidden}.mat-drawer-container.mat-drawer-container-explicit-backdrop .mat-drawer-side{z-index:3}.mat-drawer-backdrop{top:0;left:0;right:0;bottom:0;position:absolute;display:block;z-index:3;visibility:hidden}.mat-drawer-backdrop.mat-drawer-shown{visibility:visible}.mat-drawer-transition .mat-drawer-backdrop{transition-duration:.4s;transition-timing-function:cubic-bezier(.25,.8,.25,1);transition-property:background-color,visibility}@media screen and (-ms-high-contrast:active){.mat-drawer-backdrop{opacity:.5}}.mat-drawer-content{position:relative;z-index:1;display:block;height:100%;overflow:auto}.mat-drawer-transition .mat-drawer-content{transition-duration:.4s;transition-timing-function:cubic-bezier(.25,.8,.25,1);transition-property:transform,margin-left,margin-right}.mat-drawer{position:relative;z-index:4;display:block;position:absolute;top:0;bottom:0;z-index:3;outline:0;box-sizing:border-box;overflow-y:auto;transform:translate3d(-100%,0,0)}@media screen and (-ms-high-contrast:active){.mat-drawer,[dir=rtl] .mat-drawer.mat-drawer-end{border-right:solid 1px currentColor}}@media screen and (-ms-high-contrast:active){.mat-drawer.mat-drawer-end,[dir=rtl] .mat-drawer{border-left:solid 1px currentColor;border-right:none}}.mat-drawer.mat-drawer-side{z-index:2}.mat-drawer.mat-drawer-end{right:0;transform:translate3d(100%,0,0)}[dir=rtl] .mat-drawer{transform:translate3d(100%,0,0)}[dir=rtl] .mat-drawer.mat-drawer-end{left:0;right:auto;transform:translate3d(-100%,0,0)}.mat-drawer:not(.mat-drawer-side){box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12)}.mat-sidenav-fixed{position:fixed}</style><style type="text/css">:root topadblock, :root td[valign="top"] > .mainmenu[style="padding:10px 0 0 0 !important;"], :root input[onclick^="window.open('http://www.friendlyduck.com/"], :root img[alt^="Fuckbook"], :root iframe[src^="http://cdn1.adexprt.com/"], :root iframe[src^="http://ad.yieldmanager.com/"], :root div[id^="zergnet-widget"], :root div[id^="mainads"], :root div[id^="dmRosAdWrapper"], :root div[id^="div_ad_stack_"], :root iframe[id^="google_ads_iframe"], :root div[id^="crt-"][style], :root div[id^="cns_ads_"], :root div[id^="ads300_250-widget"], :root iframe[src^="http://cdn2.adexprt.com/"], :root div[id^="ads300_100-widget"], :root div[id^="ads250_250-widget"], :root div[id^="adrotate_widgets-"], :root div[id^="adfox_"], :root div[id^="ad_script_"], :root div[id^="ad_bigbox_"], :root div[id^="ad-server-"], :root div[id^="acm-ad-tag-"], :root div[id^="MarketGid"], :root div[id^="ADV-SLOT-"], :root div[data-native_ad], :root div[class^="proadszone-"], :root div[class^="local-feed-banner-ads"], :root div[class^="block-openx-"], :root div[class^="ads-partner-"], :root div[class^="ad_position_"], :root div[class^="ad_border_"], :root div[class^="Ad__container"], :root div[class^="Ad__bigBox"], :root div[id^="div-adtech-ad-"], :root div[class*="_AdInArticle_"], :root div[class$="dealnews"] > .dealnews, :root div > [class][onclick*=".updateAnalyticsEvents"], :root bottomadblock, :root aside[itemtype="https://schema.org/WPAdBlock"], :root aside[id^="div-gpt-ad"], :root div[id^="ad-cid-"], :root aside[id^="advads_ad_widget-"], :root aside[id^="adrotate_widgets-"], :root a[target="_blank"][href^="http://api.taboola.com/"], :root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='/wp-content/embed-ad-content/"], :root a[href^="https://www.share-online.biz/affiliate/"], :root a[href^="https://www.oboom.com/ad/"], :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], :root a[href^="https://www.firstload.com/affiliate/"], :root a[href^="https://www.financeads.net/tc.php?"], :root a[href^="https://www.camyou.com/?cam="][href*="&track="], :root a[href^="https://www.camsoda.com/enter.php?id="], :root a[href^="https://www.bebi.com"], :root a[href^="https://www.adskeeper.co.uk/"], :root a[href^="https://windscribe.com/promo/"], :root a[href^="https://trust.zone/go/r.php?RID="], :root a[href^="https://tracking.truthfinder.com/?a="], :root a[href^="https://track.clickmoi.xyz/"], :root div[class^="gemini-ad"], :root a[href^="https://torguard.net/aff.php"], :root a[href^="https://t.mobtya.com/"], :root a[href^="https://syndication.exoclick.com/splash.php?"], :root div[id^="YFBMSN"], :root a[href^="https://secure.eveonline.com/ft/?aid="], :root a[href^="https://redirect.ero-advertising.com/"], :root a[href^="https://pubads.g.doubleclick.net/"], :root div[id^="proadszone-"], :root a[href^="https://mk-ads.com/"], :root a[href^="https://members.linkifier.com/public/affiliateLanding?refCode="], :root a[href^="https://go.stripchat.com/"][href*="&campaignId="], :root div[class^="BlockAdvert-"], :root a[href^="https://go.onclasrv.com/"], :root a[href^="https://go.ad2up.com/"], :root a[href^="https://farm.plista.com/pets"], :root a[href^="https://evaporate.pw/"], :root a[href^="https://click.plista.com/pets"], :root a[href^="https://chaturbate.com/in/?tour="], :root a[href^="https://chaturbate.com/affiliates/"], :root a[href^="https://www.googleadservices.com/pagead/aclk?"], :root a[href^="https://awentw.com/"], :root a[href^="https://servedbyadbutler.com/"], :root a[href^="https://affiliates.bet-at-home.com/processing/"], :root a[href^="https://adswick.com/"], :root a[href^="https://adhealers.com/"], :root a[href^="https://ad.atdmt.com/"], :root a[href^="http://xtgem.com/click?"], :root a[href^="http://wxdownloadmanager.com/dl/"], :root a[href^="http://www.zergnet.com/i/"], :root a[href^="http://www.usearchmedia.com/signup?"], :root a[href^="http://www.torntv-downloader.com/"], :root a[href^="http://www.tirerack.com/affiliates/"], :root a[href^="http://www.text-link-ads.com/"], :root div[id^="div_openx_ad_"], :root a[href^="http://www.streamate.com/exports/"], :root a[href^="http://www.sfippa.com/"], :root a[href^="http://www.xmediaserve.com/"], :root a[href^="http://www.sex.com/videos/?utm_"], :root a[href^="http://www.sex.com/?utm_"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.roboform.com/php/land.php"], :root a[href^="http://www.quick-torrent.com/download.html?aff"], :root a[href^="http://www.pinkvisualgames.com/?revid="], :root a[href^="http://www.paddypower.com/?AFF_ID="], :root div[data-spotim-slot], :root a[href^="http://www.mysuperpharm.com/"], :root a[href^="http://www.myfreepaysite.com/sfw_int.php?aid"], :root a[href^="http://www.myfreepaysite.com/sfw.php?aid"], :root a[href^="http://www.myfreecams.com/?co_id="][href*="&track="], :root a[href^="http://www.moneyducks.com/"], :root a[href^="http://www.menaon.com/installs/"], :root a[href^="http://www.securegfm.com/"], :root a[href^="http://www.liversely.net/"], :root a[href^="http://www.linkbucks.com/referral/"], :root a[href^="http://www.ireel.com/signup?ref"], :root a[href^="http://www.incredimail.com/?id="], :root a[href^="http://www.idownloadplay.com/"], :root a[href^="http://www.hitcpm.com/"], :root a[href^="http://www.greenmangaming.com/?tap_a="], :root a[href^="http://www.getyourguide.com/?partner_id="], :root a[href^="http://www.gamebookers.com/cgi-bin/intro.cgi?"], :root a[href^="http://www.friendlyquacks.com/"], :root a[href^="http://www.fpcTraffic2.com/blind/in.cgi?"], :root a[href^="http://www.fonts.com/BannerScript/"], :root a[href^="http://www.fleshlight.com/"], :root a[href^="http://www.flashx.tv/downloadthis"], :root a[href^="http://www.firstload.de/affiliate/"], :root a[href^="http://www.fducks.com/"], :root a[href^="http://www.faceporn.net/free?"], :root a[href^="http://www.epicgameads.com/"], :root a[href^="http://www.easydownloadnow.com/"], :root a[href^="http://www.duckssolutions.com/"], :root a[href^="http://www.duckcash.eu/"], :root a[href^="http://www.drowle.com/"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.downloadweb.org/"], :root a[href^="http://www.downloadthesefiles.com/"], :root a[href^="http://www.installads.net/"], :root a[href^="http://www.download-provider.org/"], :root a[href^="http://www.down1oads.com/"], :root iframe[id^="google_ads_frame"], :root a[href^="http://www.dealcent.com/register.php?affid="], :root a[href^="http://www.clkads.com/adServe/"], :root a[href^="http://www.clickansave.net/"], :root a[href^="http://www.cash-duck.com/"], :root a[href^="http://www.bitlord.me/share/"], :root a[href^="http://www.bet365.com/"][href*="?affiliate="], :root a[href^="http://www.bet365.com/"][href*="&affiliate="], :root a[href^="http://www.badoink.com/go.php?"], :root a[href^="http://ad-emea.doubleclick.net/"], :root a[href^="http://www.adskeeper.co.uk/"], :root a[href^="http://www.ragazzeinvendita.com/?rcid="], :root a[href^="http://www.adbrite.com/mb/commerce/purchase_form.php?"], :root a[href^="http://www.brightwheel.info/"], :root a[href^="http://www.1clickdownloader.com/"], :root div[id^="lazyad-"], :root a[href^="http://wopertific.info/"], :root a[href^="http://see-work.info/"], :root a[href^="http://prousa.work/"], :root a[href^="http://websitedhoome.com/"], :root a[href^="http://uploaded.net/ref/"], :root a[href^="http://www.graboid.com/affiliates/"], :root a[href^="http://tracking.toroadvertising.com/"], :root a[data-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://track.affiliatenetwork.co.za/"], :root a[href^="http://track.adform.net/"], :root a[href^="http://t.wowtrk.com/"], :root a[href^="http://adprovider.adlure.net/"], :root a[href^="http://tezfiles.com/pr/"], :root .mw > #rcnt > #center_col > #taw > .c, :root a[href^="http://taboola-"][href*="/redirect.php?app.type="], :root a[href^="http://t.mdn2015x3.com/"], :root a[href^="http://clickandjoinyourgirl.com/"], :root a[href^="http://webtrackerplus.com/"], :root a[href^="http://b.bestcompleteusa.info/"], :root a[href^="http://t.mdn2015x2.com/"], :root a[href^="http://www.seekbang.com/cs/"], :root a[href^="http://bluehost.com/track/"], :root a[href^="http://syndication.exoclick.com/"], :root a[href^="http://steel.starflavor.bid/"], :root a[href^="http://sharesuper.info/"], :root a[href^="http://getlinksinaseconds.com/"], :root a[href^="http://secure.signup-way.com/"], :root a[href*=".clkcln.com/"], :root a[href^="http://secure.signup-page.com/"], :root [onclick^="window.open('http://adultfriendfinder.com/search/"], :root a[href^="http://secure.hostgator.com/~affiliat/"], :root a[href^="http://ryushare.com/affiliate.python"], :root a[href^="http://record.commissionking.com/"], :root div[class*="-storyBodyAd-"], :root a[href^="http://record.betsafe.com/"], :root a[href^="http://gca.sh/user/register?ref="], :root a[href^="http://promos.bwin.com/"], :root a[href^="http://prochina.link/"], :root a[href^="http://z1.zedo.com/"], :root a[href^="http://pokershibes.com/index.php?ref="], :root .ra[width="30%"][align="right"] + table[width="70%"][cellpadding="0"], :root a[href^="http://searchtabnew.com/"], :root a[href^="http://pan.adraccoon.com?"], :root a[href^="http://n217adserv.com/"], :root a[href^="http://mojofun.info/"], :root a[href^="http://mmo123.co/"], :root a[href^="http://media.paddypower.com/redirect.aspx?"], :root a[href^="http://www.socialsex.com/"], :root a[href^="http://www.affbuzzads.com/affiliate/"], :root a[href*=".qertewrt.com/"], :root a[href^="http://lp.ncdownloader.com/"], :root #rhs_block .xpdopen > ._OKe > div > .mod > ._yYf, :root a[href^="http://lp.ezdownloadpro.info/"], :root a[href^="https://ads.ad4game.com/"], :root a[href*="/adServe/banners?"], :root a[href^="http://liversely.com/"], :root a[href^="http://latestdownloads.net/download.php?"], :root a[href^="http://keep2share.cc/pr/"], :root a[href^="http://k2s.cc/pr/"], :root a[href^="http://k2s.cc/code/"], :root a[href^="http://www.liutilities.com/"], :root a[href^="http://www.dl-provider.com/search/"], :root a[href^="http://tracking.deltamediallc.com/"], :root a[href*=".bang.com/"][href*="&aff="], :root a[href^="http://join3.bannedsextapes.com/track/"], :root a[href^="http://green.trafficinvest.com/"], :root a[href^="http://jobitem.org/"], :root a[href^="//adbit.co/?a=Advertise&"], :root a[href^="http://istri.it/?"], :root a[href^="https://dltags.com/"], :root a[href^="http://onclickads.net/"], :root a[href^="http://www.terraclicks.com/"], :root a[href^="http://www.coinducks.com/"], :root a[href^="http://internalredirect.site/"], :root a[href^="http://cdn.adstract.com/"], :root a[href^="http://hyperlinksecure.com/go/"], :root a[href^="http://pubads.g.doubleclick.net/"], :root a[href^="http://www.myvpn.pro/"], :root a[href^="http://hyperies.info/"], :root a[href^="http://hpn.houzz.com/"], :root a[href^="http://greensmoke.com/"], :root a[href^="http://farm.plista.com/pets"], :root a[href^="http://mo8mwxi1.com/"], :root div[class^="ResponsiveAd-"], :root a[href^="http://www.revenuehits.com/"], :root a[href^="http://go.seomojo.com/tracking202/"], :root div[id^="block-views-topheader-ad-block-"], :root a[href^="http://go.oclaserver.com/"], :root .__y_elastic .__y_item, :root a[href^="http://go.mobisla.com/"], :root div[id^="advads-"], :root a[href^="http://www.ringtonematcher.com/"], :root a[href^="http://www.adshost2.com/"], :root a[href^="//srv.buysellads.com/"], :root a[href^="http://g1.v.fwmrm.net/ad/"], :root a[href^="http://us.marketgid.com"], :root A[href^="https://www.friendlyduck.com/AF_"], :root a[href^="http://imads.integral-marketing.com/"], :root a[href^="http://freesoftwarelive.com/"], :root a[href^="http://adtrackone.eu/"], :root a[href^="http://finaljuyu.com/"], :root a[href^="http://tour.affbuzzads.com/"], :root a[href^="http://fileupnow.rocks/"], :root a[href^="http://fileloadr.com/"], :root a[href^="http://extra.bet365.com/"][href*="?affiliate="], :root a[href^="http://elitefuckbook.com/"], :root div[id^="ads300_600-widget"], :root div[class^="Ad__adContainer"], :root a[href^="http://web.adblade.com/"], :root a[href^="http://elite-sex-finder.com/?"], :root a[href^="http://webgirlz.online/landing/"], :root a[href^="http://eclkmpsa.com/"], :root a[href^="http://dethao.com/"], :root a[href^="http://data.committeemenencyclopedicrepertory.info/"], :root a[href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="], :root a[href^="http://hdplugin.flashplayer-updates.com/"], :root a[href^="http://data.ad.yieldmanager.net/"], :root #content > #center > .dose > .dosesingle, :root a[href^="http://campaign.bharatmatrimony.com/track/"], :root a[href^="http://d2.zedo.com/"], :root a[href^="http://contractallsticker.net/"], :root a[href^="http://codec.codecm.com/"], :root div[id^="ads120_600-widget"], :root a[href^="http://clk.directrev.com/"], :root a[href^="http://refer.webhostingbuzz.com/"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://clickserv.sitescout.com/"], :root a[href*=".intab.fun/"], :root a[href^="http://clicks.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://www.downloadplayer1.com/"], :root a[href^="http://clicks.binarypromos.com/"], :root a[href^="https://dediseedbox.com/clients/aff.php?"], :root a[href^="http://www.wantstraffic.com/"], :root .lads[width="100%"][style="background:#FFF8DD"], :root a[href^="http://databass.info/"], :root a[href^="http://www.urmediazone.com/signup"], :root a[href^="http://ads.pheedo.com/"], :root a[href^="http://click.plista.com/pets"], :root a[href^="http://chaturbate.com/affiliates/"], :root a[href^="http://www.friendlyadvertisements.com/"], :root a[href^="http://cdn3.adbrau.com/"], :root a[href^="http://get.slickvpn.com/"], :root a[href*="/adrotate-out.php?"], :root a[href^="http://track.trkvluum.com/"], :root a[href^="http://2pxg8bcf.top/"], :root a[href^="http://cpaway.afftrack.com/"], :root a[href^="http://cdn.adsrvmedia.net/"], :root a[href^="http://360ads.go2cloud.org/"], :root a[href^="http://dftrck.com/"], :root a[href^="http://casino-x.com/?partner"], :root a[href^="http://campeeks.com/"][href*="&utm_"], :root a[href^="http://www.on2url.com/app/adtrack.asp"], :root #\5f _nq__hh[style="display:block!important"], :root a[href^="http://guideways.info/"], :root a[href^="http://campaign.bharatmatrimony.com/cbstrack/"], :root a[href^="http://ads.expekt.com/affiliates/"], :root a[href^="http://callville.xyz/"], :root div[itemtype="http://schema.org/WPAdBlock"], :root a[href^="http://xads.zedo.com/"], :root a[href^="http://c.jumia.io/"], :root a[href^="http://down1oads.com/"], :root a[href^="http://buysellads.com/"], :root a[href^="http://serve.williamhill.com/promoRedirect?"], :root a[href^="http://feedads.g.doubleclick.net/"], :root a[href^="http://bs.serving-sys.com/"], :root a[href^="http://betahit.click/"], :root a[href^="http://cinema.friendscout24.de?"], :root [lazy-ad="lefttop_banner"], :root a[href^="http://servicegetbook.net/"], :root a[href^="https://trklvs.com/"], :root a[href^="http://bestorican.com/"], :root a[href^="http://bcp.crwdcntrl.net/"], :root a[href^="http://www.123-reg.co.uk/affiliate2.cgi"], :root a[href^="http://bcntrack.com/"], :root a[href^="http://bc.vc/?r="], :root a[href^="http://banners.victor.com/processing/"], :root a[href^="http://install.securewebsiteaccess.com/"], :root .inlineNewsletterSubscription + .inlineNewsletterSubscription div[class$="_item"], :root a[href^="http://clkmon.com/adServe/"], :root a[href^="http://www.torntvdl.com/"], :root a[href^="http://at.atwola.com/"], :root a[href^="//88d7b6aa44fb8eb.com/"], :root a[href^="http://api.ringtonematcher.com/"], :root a[href^="http://www.fbooksluts.com/"], :root a[href^="http://www.cdjapan.co.jp/aff/click.cgi/"], :root a[href^="http://c.actiondesk.com/"], :root div[id^="ad-position-"], :root a[href^="http://affiliate.glbtracker.com/"], :root a[href^="http://anonymous-net.com/"], :root a[href^="https://www.dsct1.com/"], :root a[href^="http://amzn.to/"] > img[src^="data"], :root .icons-rss-feed + .icons-rss-feed div[class$="_item"], :root a[href^="http://aflrm.com/"], :root a[href^="http://affiliates.pinnaclesports.com/processing/"], :root a[href^="http://affiliate.godaddy.com/"], :root a[href^="http://partner.sbaffiliates.com/"], :root a[href^="http://affiliate.coral.co.uk/processing/"], :root a[href^="http://aff.ironsocket.com/"], :root a[href^="http://tracker.mybroadband.co.za/"], :root a[href^="http://zevera.com/afi.html"], :root a[href^="http://adsrv.keycaptcha.com"], :root a[href^="http://adserving.unibet.com/"], :root a[href^="https://bs.serving-sys.com"], :root a[href^="https://atomidownload.com/"], :root a[href^="http://adtransfer.net/"], :root a[href^="http://adserver.itsfogo.com/"], :root iframe[src^="http://static.mozo.com.au/strips/"], :root a[href^="https://www.spyoff.com/"], :root AD-TRIPLE-BOX, :root a[href^="http://ads2.williamhill.com/redirect.aspx?"], :root a[href^="https://secure.adnxs.com/clktrb?"], :root a[href^="http://adserver.adtechus.com/"], :root .__ywvr .__y_item, :root a[href^="http://download-performance.com/"], :root #\5f _mom_ad_12, :root a[href^="http://ads.integral-marketing.com/"], :root a[href^="http://adserver.adtech.de/"], :root a[href^="http://ads.betfair.com/redirect.aspx?"], :root a[href^="http://ads.affbuzzads.com/"], :root a[href^="http://online.ladbrokes.com/promoRedirect?"], :root a[href^="http://ads.ad-center.com/"], :root a[href^="http://admingame.info/"], :root div[id^="q1-adset-"], :root a[href^="http://adfarm.mediaplex.com/"], :root #center_col > #taw > #tvcap > .rscontainer, :root a[href^="http://adf.ly/?id="], :root a[href^="http://www.sex.com/pics/?utm_"], :root a[href^="http://engine.newsmaxfeednetwork.com/"], :root a[href^="http://www.plus500.com/?id="], :root #flowplayer > div[style="z-index: 208; position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px;"], :root a[href^="http://ad.yieldmanager.com/"], :root a[href^="http://ad.doubleclick.net/"], :root a[href^="http://abc2.mobile-10.com/"], :root a[href^="http://NowDownloadAll.com"], :root a[href^="http://www.ducksnetwork.com/"], :root a[href^="http://3wr110.net/"], :root a[href^="http://www5.smartadserver.com/call/pubjumpi/"], :root a[href^="//ads.ad-center.com/"], :root a[href^="http://1phads.com/"], :root a[href^="http://adserving.liveuniversenetwork.com/"], :root a[href^="https://chaturbate.com/in/?track="], :root a[href^="http://www1.clickdownloader.com/"], :root a[href^="//tracking.content-recommendation.net/"][href*="/sponsored/click.html?"], :root #center_col > #resultStats + div[style="border:1px solid #dedede;margin-bottom:11px;padding:5px 7px 5px 6px"], :root a[href^="https://www.secureupload.eu/suprerefid="], :root a[href^="http://yads.zedo.com/"], :root #mbEnd[cellspacing="0"][cellpadding="0"], :root a[href^="http://adclick.g.doubleclick.net/"], :root a[href^="//t.MtagMonetizationA.com/"], :root a[href^="//nlkdom.com/"], :root #MAIN.ShowTopic > .ad, :root a[href^="http://findersocket.com/"], :root a[href^="http://cdn3.adexprts.com/"], :root a[href^="//jsmptjmp.com/"], :root a[href^="//go.onclasrv.com/"], :root a[href^="http://games.ucoz.ru/"][target="_blank"], :root [id*="ScriptRoot"], :root div[id^="advads_"], :root a[href^="//db52cc91beabf7e8.com/"], :root #\5f _mom_ad_2, :root a[href^="http://ads.activtrades.com/"], :root a[href^="//api.ad-goi.com/"], :root a[href^="http://www.sexgangsters.com/?pid="], :root a[href^="http://www.amazon.co.uk/exec/obidos/external-search?"], :root div[id^="google_ads_iframe_"], :root a[href^="http://www.pheedo.com/"], :root a[href^="http://www.affiliates1128.com/processing/"], :root #mn div[style="position:relative"] > #center_col > ._Ak, :root [ad-id^="googlead"], :root a[href^="http://www.afgr3.com/"], :root div[id^="google_dfp_"], :root a[href^="//5e1fcb75b6d662d.com/"], :root #content > #right > .dose > .dosesingle, :root a[href^="http://9nl.es/"], :root #center_col > #resultStats + div + #res + #tads, :root a[href^="//40ceexln7929.com/"], :root a[href^="//00ae8b5a9c1d597.com/"], :root a[href^="http://www.firstclass-download.com/"], :root a[href*=".trust.zone"], :root a[href^="http://adrunnr.com/"], :root div[id^="div-gpt-ad"], :root a[href^="http://fusionads.net"], :root a[href^=" http://www.sex.com/"][href*="&utm_"], :root a[href^="https://keep2share.cc/pr/"], :root [onclick*="content.ad/"], :root div[class^="awpcp-random-ads"], :root a[href^="http://galleries.securewebsiteaccess.com/"], :root a[href^=" http://n47adshostnet.com/"], :root .section-result[data-result-ad-type], :root script[src^="http://free-shoutbox.net/app/webroot/shoutbox/sb.php?shoutbox="] + #freeshoutbox_content, :root a[href^=" http://ads.ad-center.com/"], :root a[href="http://track.freemmo2017.com/"], :root .GPMV2XEDA2 > .GPMV2XEDP1 > .GPMV2XEDJBB, :root a[href*="onclkds."], :root a[href^="http://a.adquantix.com/"], :root a[href^="http://srvpub.com/"], :root div[id^="dfp-slot-"], :root .l-container > #fishtank, :root a[href^="//go.vedohd.org/"], :root a[href^="https://fileboom.me/pr/"], :root a[href^="http://marketgid.com"], :root a[href*="pussl3.com"], :root div[itemtype="http://www.schema.org/WPAdBlock"], :root .__zinit .__y_item, :root .ch[onclick="ga(this,event)"], :root a[href^="https://ad.doubleclick.net/"], :root a[href*="letsadvertisetogether.com"], :root a[href^="http://data.linoleictanzaniatitanic.com/"], :root a[href*="=exoclick"], :root a[href*="=adscript"], :root #mn #center_col > div > h2.spon:first-child, :root a[href*="=Adtracker"], :root .ra[align="right"][width="30%"], :root a[href*="5iclx7wa4q.com"], :root a[href^="https://www.popads.net/users/"], :root a[href^="http://tracking.crazylead.com/"], :root a[href*="/cmd.php?ad="], :root #ads > .dose > .dosesingle, :root a[href^="//bwnjijl7w.com/"], :root a[href*=".revimedia.com/"], :root a[href^="http://fsoft4down.com/"], :root a[href*="ad2upapp.com/"], :root .plista_widget_belowArticleRelaunch_item[data-type="pet"], :root a[href*=".adsrv.eacdn.com/"] > img, :root a[href^="http://lp.ilivid.com/"], :root a[href*=".inclk.com/"], :root a[href*=".ichlnk.com/"], :root a[href^="http://api.content.ad/"], :root a[href^="http://galleries.pinballpublishernetwork.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root a[href*=".adk2x.com/"], :root #\5f _admvnlb_modal_container, :root a[href^="http://www.firstload.com/affiliate/"], :root a[href^="http://duckcash.eu/"], :root a[href^="http://www.mobileandinternetadvertising.com/"], :root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"], :root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author, :root a[href^="http://www.my-dirty-hobby.com/?sub="], :root a[href^="http://liversely.net/"], :root a[href^="http://www.bluehost.com/track/"] > img, :root a[data-url^="http://paid.outbrain.com/network/redir?"], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://www.twinplan.com/AF_"], :root a[href^="http://n.admagnet.net/"], :root a[href^="http://connectlinking6.com/"], :root a[data-obtrack^="http://paid.outbrain.com/network/redir?"], :root .plistaList > .itemLinkPET, :root a[href^="http://mgid.com/"], :root a[href^="http://adultfriendfinder.com/p/register.cgi?pid="], :root a[href*="a2g-secure.com"], :root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"], :root a[href^="http://go.ad2up.com/"], :root [id*="MarketGid"], :root [id^="bunyad_ads_"], :root div[class^="AdhesionAd_"], :root .trc_rbox_div .syndicatedItem, :root #mn #center_col > div > h2.spon:first-child + ol:last-child, :root .plistaList > .plista_widget_underArticle_item[data-type="pet"], :root a[href^="http://goldmoney.com/?gmrefcode="], :root a[href^="http://papi.mynativeplatform.com:80/pub2/"], :root LEADERBOARD-AD, :root a[href^="http://adexprt.me/"], :root a[href^="http://bonusfapturbo.nmvsite.com/"], :root DFP-AD, :root a[href^="//www.mgid.com/"], :root div[id^="ad-div-"], :root #center_col > div[style="font-size:14px;margin-right:0;min-height:5px"] > div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff8e7"], :root .jobs-information-call-to-action + .jobs-information-call-to-action div[class$="_item"], :root .__y_inner > .__y_item, :root AMP-AD, :root div[class^="lifeOnwerAd"], :root a[data-oburl^="http://paid.outbrain.com/network/redir?"], :root .widget-pane-section-result[data-result-ad-type], :root a[href^="http://ffxitrack.com/"], :root #center_col > #main > .dfrd > .mnr-c > .c._oc._zs, :root .trc_rbox_div .syndicatedItemUB, :root .trc_rbox .syndicatedItem, :root a[href^="http://pwrads.net/"], :root div[class^="adpubs-"], :root #mn div[style="position:relative"] > #center_col > div > ._dPg, :root .rhsvw[style="background-color:#fff;margin:0 0 14px;padding-bottom:1px;padding-top:1px;"], :root a[href^="http://www.pinkvisualpad.com/?revid="], :root a[href^="//porngames.adult/?SID="], :root #main-content > [style="padding:10px 0 0 0 !important;"], :root a[href^="http://www.webtrackerplus.com/"], :root .GJJKPX2N1 > .GJJKPX2M1 > .GJJKPX2P4, :root a[href^="http://centertrust.xyz/"], :root .ob_container .item-container-obpd, :root a[href^="http://ad.au.doubleclick.net/"], :root a[href^="https://intrev.co/"], :root a[href^="http://record.sportsbetaffiliates.com.au/"], :root #topstuff > #tads, :root a[href^="https://porndeals.com/?track="], :root a[href^="http://www.1clickmoviedownloader.info/"], :root .mw > #rcnt > #center_col > #taw > #tvcap > .c, :root a[href^="//zenhppyad.com/"], :root a[href^="http://www.yourfuckbook.com/?"], :root a[href^="http://ads.sprintrade.com/"], :root .GHOFUQ5BG2 > .GHOFUQ5BF2 > .GHOFUQ5BG5, :root div[id^="yandex_ad"], :root a[href^="http://www.richducks.com/"], :root a[href^="http://www.babylon.com/welcome/index?affID"], :root a[href*="/servlet/click/zone?"], :root a[href^="http://ad-apac.doubleclick.net/"], :root .gbfwa > div[class$="_item"], :root a[href^="http://prochina.space/"], :root a[href^="http://www.freefilesdownloader.com/"], :root a[href^="http://ul.to/ref/"], :root a[href^="http://www.uniblue.com/cm/"], :root a[data-redirect^="http://click.plista.com/pets"], :root #rhs_block > script + .c._oc._Ve.rhsvw, :root .rscontainer > .ellip, :root a[href^="http://track.incognitovpn.com/"], :root a[href^="http://click.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://stateresolver.link/"], :root .__ywl .__y_item, :root a[href*=".clksite.com/"], :root #center_col > #resultStats + #tads, :root .__yinit .__y_item, :root a[href^="http://adlev.neodatagroup.com/"], :root .ra[align="left"][width="30%"], :root a[href^="https://trackjs.com/?utm_source"], :root AFS-AD, :root a[href^="http://server.cpmstar.com/click.aspx?poolid="], :root #cnt #center_col > #res > #topstuff > .ts, :root #cnt #center_col > #taw > #tvcap > .c._oc._Lp, :root .trc_rbox_div a[target="_blank"][href^="http://tab"], :root .GKJYXHBF2 > .GKJYXHBE2 > .GKJYXHBH5, :root #rhs_block .mod > .gws-local-hotels__booking-module, :root a[href*="googleme.eu"], :root .mod > ._jH + .rscontainer, :root .GFYY1SVD2 > .GFYY1SVC2 > .GFYY1SVF5, :root a[href^="https://dcs.adgear.com/clicks/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://affiliates.score-affiliates.com/"], :root ADS-RIGHT, :root a[href^="http://www.accuserveadsystem.com/accuserve-go.php?"], :root a[href^="http://c.ketads.com/"], :root a[href^="http://adtrack123.pl/"], :root [id*="MGWrap"], :root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"], :root #tads + div + .c, :root a[href^="https://betway.com/"][href*="&a="], :root a[href^="http://rekoverr.com/"], :root #rhswrapper > #rhssection[border="0"][bgcolor="#ffffff"], :root .Mpopup + #Mad > #MadZone, :root a[href^="http://www.TwinPlan.com/AF_"], :root a[href^="http://landingpagegenius.com/"], :root a[href^="http://www.streamtunerhd.com/signup?"], :root #ssmiwdiv[jsdisplay], :root a[href^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://easydownload4you.com/"], :root #rhs_block > #mbEnd, :root #center_col > #\5f Emc, :root div[id^="dfp-ad-"], :root .GB3L-QEDGY .GB3L-QEDF- > .GB3L-QEDE-, :root #rhs_block .mod > .luhb-div > div[data-async-type="updateHotelBookingModule"], :root input[onclick^="window.open('http://www.FriendlyDuck.com/"], :root a[href^="//z6naousb.com/"], :root .rc-cta[data-target], :root a[href^="http://hd-plugins.com/download/"], :root #rhs_block > .ts[cellspacing="0"][cellpadding="0"][style="padding:0"], :root .GFYY1SVE2 > .GFYY1SVD2 > .GFYY1SVG5, :root #flowplayer > div[style="position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px; z-index: 999;"], :root a[href^="http://ddownload39.club/"], :root a[href^="http://cwcams.com/landing/click/"], :root .nrelate .nr_partner, :root a[href^="http://www.adxpansion.com"], :root a[href^="http://wgpartner.com/"], :root #center_col > #resultStats + #tads + #res + #tads, :root .trc_related_container div[data-item-syndicated="true"], :root a[href^="http://t.mdn2015x1.com/"], :root .trc_rbox_border_elm .syndicatedItem, :root a[href^="http://dwn.pushtraffic.net/"], :root a[href$="/vghd.shtml"], :root a[href^="//medleyads.com/spot/"], :root #rhs_block > ol > .rhsvw > .kp-blk > .xpdopen > ._OKe > ol > ._DJe > .luhb-div, :root a[href^="http://linksnappy.com/?ref="], :root #main_col > #center_col div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff7ed"], :root #center_col > #res > #topstuff + #search > div > #ires > #rso > #flun, :root #resultspanel > #topads, :root p[id^="div-gpt-ad-"], :root #assetsListings[style="display: block;"], :root #header + #content > #left > #rlblock_left, :root a[href*="emprestimo.eu"] { display: none !important; }</style><script charset="utf-8" src="./Angular - QuickStart_files/announcement-bar-announcement-bar-module-ngfactory.7840b3c8d97d9ffb6b58.js"></script><style>.mat-progress-bar{display:block;height:5px;overflow:hidden;position:relative;transition:opacity 250ms linear;width:100%}.mat-progress-bar .mat-progress-bar-element,.mat-progress-bar .mat-progress-bar-fill::after{height:100%;position:absolute;width:100%}.mat-progress-bar .mat-progress-bar-background{width:calc(100% + 10px)}.mat-progress-bar .mat-progress-bar-buffer{transform-origin:top left;transition:transform 250ms ease}.mat-progress-bar .mat-progress-bar-secondary{display:none}.mat-progress-bar .mat-progress-bar-fill{animation:none;transform-origin:top left;transition:transform 250ms ease}.mat-progress-bar .mat-progress-bar-fill::after{animation:none;content:'';display:inline-block;left:0}.mat-progress-bar[dir=rtl],[dir=rtl] .mat-progress-bar{transform:rotateY(180deg)}.mat-progress-bar[mode=query]{transform:rotateZ(180deg)}.mat-progress-bar[mode=query][dir=rtl],[dir=rtl] .mat-progress-bar[mode=query]{transform:rotateZ(180deg) rotateY(180deg)}.mat-progress-bar[mode=indeterminate] .mat-progress-bar-fill,.mat-progress-bar[mode=query] .mat-progress-bar-fill{transition:none}.mat-progress-bar[mode=indeterminate] .mat-progress-bar-primary,.mat-progress-bar[mode=query] .mat-progress-bar-primary{-webkit-backface-visibility:hidden;backface-visibility:hidden;animation:mat-progress-bar-primary-indeterminate-translate 2s infinite linear;left:-145.166611%}.mat-progress-bar[mode=indeterminate] .mat-progress-bar-primary.mat-progress-bar-fill::after,.mat-progress-bar[mode=query] .mat-progress-bar-primary.mat-progress-bar-fill::after{-webkit-backface-visibility:hidden;backface-visibility:hidden;animation:mat-progress-bar-primary-indeterminate-scale 2s infinite linear}.mat-progress-bar[mode=indeterminate] .mat-progress-bar-secondary,.mat-progress-bar[mode=query] .mat-progress-bar-secondary{-webkit-backface-visibility:hidden;backface-visibility:hidden;animation:mat-progress-bar-secondary-indeterminate-translate 2s infinite linear;left:-54.888891%;display:block}.mat-progress-bar[mode=indeterminate] .mat-progress-bar-secondary.mat-progress-bar-fill::after,.mat-progress-bar[mode=query] .mat-progress-bar-secondary.mat-progress-bar-fill::after{-webkit-backface-visibility:hidden;backface-visibility:hidden;animation:mat-progress-bar-secondary-indeterminate-scale 2s infinite linear}.mat-progress-bar[mode=buffer] .mat-progress-bar-background{-webkit-backface-visibility:hidden;backface-visibility:hidden;animation:mat-progress-bar-background-scroll 250ms infinite linear}@keyframes mat-progress-bar-primary-indeterminate-translate{0%{transform:translateX(0)}20%{animation-timing-function:cubic-bezier(.5,0,.70173,.49582);transform:translateX(0)}59.15%{animation-timing-function:cubic-bezier(.30244,.38135,.55,.95635);transform:translateX(83.67142%)}100%{transform:translateX(200.61106%)}}@keyframes mat-progress-bar-primary-indeterminate-scale{0%{transform:scaleX(.08)}36.65%{animation-timing-function:cubic-bezier(.33473,.12482,.78584,1);transform:scaleX(.08)}69.15%{animation-timing-function:cubic-bezier(.06,.11,.6,1);transform:scaleX(.66148)}100%{transform:scaleX(.08)}}@keyframes mat-progress-bar-secondary-indeterminate-translate{0%{animation-timing-function:cubic-bezier(.15,0,.51506,.40969);transform:translateX(0)}25%{animation-timing-function:cubic-bezier(.31033,.28406,.8,.73371);transform:translateX(37.65191%)}48.35%{animation-timing-function:cubic-bezier(.4,.62704,.6,.90203);transform:translateX(84.38617%)}100%{transform:translateX(160.27778%)}}@keyframes mat-progress-bar-secondary-indeterminate-scale{0%{animation-timing-function:cubic-bezier(.15,0,.51506,.40969);transform:scaleX(.08)}19.15%{animation-timing-function:cubic-bezier(.31033,.28406,.8,.73371);transform:scaleX(.4571)}44.15%{animation-timing-function:cubic-bezier(.4,.62704,.6,.90203);transform:scaleX(.72796)}100%{transform:scaleX(.08)}}@keyframes mat-progress-bar-background-scroll{to{transform:translateX(-10px)}}</style><script charset="utf-8" src="./Angular - QuickStart_files/toc-toc-module-ngfactory.5e26577a03daf821ff51.js"></script><script charset="utf-8" src="./Angular - QuickStart_files/code-code-example-module-ngfactory_code-code-tabs-module-ngfactory.9a696b109e2b883fd5a6.js"></script><script charset="utf-8" src="./Angular - QuickStart_files/code-code-example-module-ngfactory.abb0902778ecb15f1f22.js"></script><script charset="utf-8" src="./Angular - QuickStart_files/13.6a5028e19c5d850f372a.js"></script></head>
+<body>
+
+  <aio-shell ng-version="6.0.0" class="mode-stable sidenav-open page-guide-quickstart folder-guide view-SideNav aio-notification-hide "><div id="top-of-page"></div><!----><mat-toolbar class="app-toolbar no-print mat-toolbar mat-primary mat-toolbar-multiple-rows" color="primary"><mat-toolbar-row class="notification-container mat-toolbar-row"><aio-notification expirationdate="2018-07-01" notificationid="angular-v6-announcement" class="ng-tns-c2-0 ng-trigger ng-trigger-hideAnimation" style="height: 0px;"><span class="content"><a href="https://blog.angular.io/version-6-0-0-of-angular-now-available-cc56b0efa7a4"><mat-icon aria-label="Announcement" class="icon mat-icon" role="img" svgicon="insert_comment" aria-hidden="true"><svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></mat-icon><span class="message">Version 6 of Angular Now Available!</span><span class="action-button">Learn More</span></a></span><button class="close-button mat-icon-button" aria-label="Close" mat-icon-button=""><span class="mat-button-wrapper"><mat-icon aria-label="Dismiss notification" class="mat-icon ng-tns-c2-0" role="img" svgicon="close" aria-hidden="true"><svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></mat-icon></span><div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div><div class="mat-button-focus-overlay"></div></button></aio-notification></mat-toolbar-row><mat-toolbar-row class="mat-toolbar-row"><button class="hamburger mat-button" mat-button="" title="Docs menu"><span class="mat-button-wrapper"><mat-icon class="mat-icon" role="img" svgicon="menu" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></mat-icon></span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></button><a class="nav-link home" href="https://angular.io/"><!----><img alt="Home" height="40" src="./Angular - QuickStart_files/logo-nav@2x.png" title="Home" width="150" class="ng-star-inserted"><!----></a><!----><aio-top-menu class="ng-star-inserted"><ul role="navigation"><!----><li class="ng-star-inserted"><a class="nav-link" href="https://angular.io/features" title="Features">Features</a></li><li class="ng-star-inserted"><a class="nav-link" href="https://angular.io/docs" title="Docs">Docs</a></li><li class="ng-star-inserted"><a class="nav-link" href="https://angular.io/resources" title="Resources">Resources</a></li><li class="ng-star-inserted"><a class="nav-link" href="https://angular.io/events" title="Events">Events</a></li><li class="ng-star-inserted"><a class="nav-link" href="https://blog.angular.io/" title="Blog">Blog</a></li></ul></aio-top-menu><aio-search-box class="search-container"><input aria-label="search" placeholder="Search" type="search"></aio-search-box><div class="toolbar-external-icons-container"><a href="https://twitter.com/angular" title="Twitter"><img src="./Angular - QuickStart_files/twitter-icon.svg"></a><a href="https://github.com/angular/angular" title="GitHub"><img src="./Angular - QuickStart_files/github-icon.svg"></a></div></mat-toolbar-row></mat-toolbar><!----><mat-sidenav-container class="sidenav-container mat-drawer-container mat-sidenav-container has-floating-toc mat-drawer-transition" role="main"><!----><div class="mat-drawer-backdrop ng-star-inserted"></div><div tabindex="-1" class="cdk-visually-hidden cdk-focus-trap-anchor"></div><mat-sidenav class="sidenav mat-drawer mat-sidenav ng-tns-c6-1 ng-trigger ng-trigger-transform mat-drawer-side ng-star-inserted" tabindex="-1" style="transform: translate3d(0px, 0px, 0px); visibility: visible;"><!----><aio-nav-menu><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-1 expanded selected" href="https://angular.io/guide/quickstart" title="A gentle introduction to Angular."> Getting Started </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-1 collapsed" type="button" title="The Tour of Heroes tutorial takes you through the steps of creating an Angular application in TypeScript." aria-pressed="false"> Tutorial <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-1 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial" title="Part 1: Introduction to the Tour of Heroes tutorial"> 1. Introduction </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial/toh-pt0" title="Part 2: Creating the application shell"> 2. The Application Shell </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial/toh-pt1" title="Part 3: Build a simple hero editor"> 3. The Hero Editor </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial/toh-pt2" title="Part 4: Build a master/detail page with a list of heroes."> 4. Displaying a List </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial/toh-pt3" title="Part 5: Refactor the master/detail view into separate components."> 5. Master/Detail Components </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial/toh-pt4" title="Part 6: Create a reusable service to manage hero data."> 6. Services </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial/toh-pt5" title="Part 7: Add the Angular router and navigate among the views."> 7. Routing </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/tutorial/toh-pt6" title="Part 8: Use HTTP to retrieve and save hero data."> 8. HTTP </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-1 collapsed" type="button" title="The fundamentals of Angular" aria-pressed="false"> Fundamentals <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-1 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="The basic building blocks of Angular applications." aria-pressed="false"> Architecture <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/architecture" title="Basic building blocks of Angular applications."> Architecture Overview </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/architecture-modules" title="About NgModules."> Intro to Modules </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/architecture-components" title="About Components, Templates, and Views."> Intro to Components </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/architecture-services" title="About services and dependency injection."> Intro to Services and DI </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/architecture-next-steps" title="Beyond the basics."> Next Steps </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Building dynamic views with data binding" aria-pressed="false"> Components &amp; Templates <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/displaying-data" title="Property binding helps show app data in the UI."> Displaying Data </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/template-syntax" title="Learn how to write templates that display data and consume user events with the help of data binding."> Template Syntax </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/lifecycle-hooks" title="Angular calls lifecycle hook methods on directives and components as it creates, changes, and destroys them."> Lifecycle Hooks </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/component-interaction" title="Share information between different directives and components."> Component Interaction </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/component-styles" title="Add CSS styles that are specific to a component."> Component Styles </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/elements" title="Convert components to Custom Elements."> Angular Elements </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/dynamic-component-loader" title="Load components dynamically."> Dynamic Components </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/attribute-directives" title="Attribute directives attach behavior to elements."> Attribute Directives </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/structural-directives" title="Structural directives manipulate the layout of the page."> Structural Directives </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/pipes" title="Pipes transform displayed values within a template."> Pipes </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/animations" title="A guide to Angular&#39;s animation system."> Animations </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Angular Forms" aria-pressed="false"> Forms <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/user-input" title="User input triggers DOM events. We listen to those events with event bindings that funnel updated values back into our components and models."> User Input </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/forms" title="A form creates a cohesive, effective, and compelling data entry experience. An Angular form coordinates a set of data-bound user controls, tracks changes, validates input, and presents errors."> Template-driven Forms </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/form-validation" title="Validate user&#39;s form entries."> Form Validation </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/reactive-forms" title="Create a reactive form using FormBuilder, groups, and arrays."> Reactive Forms </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/dynamic-form" title="Render dynamic forms with FormGroup."> Dynamic forms </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Observables &amp; RxJS" aria-pressed="false"> Observables &amp; RxJS <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/observables" title=""> Observables </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/rx-library" title=""> The RxJS Library </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/observables-in-angular" title=""> Observables in Angular </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/practical-observable-usage" title=""> Practical Usage </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/comparing-observables" title=""> Compare to Other Techniques </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/bootstrapping" title="Tell Angular how to construct and bootstrap the app in the root &quot;AppModule&quot;."> Bootstrapping </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="NgModules." aria-pressed="false"> NgModules <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/ngmodules" title="Use NgModules to make your apps efficient."> NgModules Introduction </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/ngmodule-vs-jsmodule" title="Differentiate between JavaScript modules and NgModules."> JS Modules vs NgModules </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/frequent-ngmodules" title="Introduction to the most frequently used NgModules."> Frequently Used NgModules </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/module-types" title="Description of the different types of feature modules."> Types of Feature Modules </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/entry-components" title="All about entry components in Angular."> Entry Components </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/feature-modules" title="Create feature modules to organize your code."> Feature Modules </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/providers" title="Providers and NgModules."> Providers </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/singleton-services" title="Creating singleton services."> Singleton Services </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/lazy-loading-ngmodules" title="Lazy load modules to speed up your apps."> Lazy Loading Feature Modules </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/sharing-ngmodules" title="Share NgModules to streamline your apps."> Sharing NgModules </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/ngmodule-api" title="Understand the details of NgModules."> NgModule API </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/ngmodule-faq" title="Answers to frequently asked questions about NgModules."> NgModule FAQs </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Dependency Injection: creating and injecting services" aria-pressed="false"> Dependency Injection <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/dependency-injection-pattern" title="Learn about the dependency injection pattern behind the Angular DI system."> The Dependency Injection pattern </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/dependency-injection" title="Angular&#39;s dependency injection system creates and delivers dependent services to Angular-created classes."> Angular Dependency Injection </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/hierarchical-dependency-injection" title="Angular&#39;s hierarchical dependency injection system supports nested injectors in parallel with the component tree."> Hierarchical Injectors </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/dependency-injection-in-action" title="Techniques for Dependency Injection."> DI in Action </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/http" title="Use HTTP to talk to a remote server."> HttpClient </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/router" title="Discover the basics of screen navigation with the Angular Router."> Routing &amp; Navigation </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/testing" title="Techniques and practices for testing an Angular app."> Testing </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/cheatsheet" title="A quick guide to common Angular coding techniques."> Cheat Sheet </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-1 collapsed" type="button" title="Techniques for putting Angular to work in your environment" aria-pressed="false"> Techniques <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-1 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/i18n" title="Translate the app&#39;s template text into multiple languages."> Internationalization (i18n) </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/language-service" title="Use Angular Language Service to speed up dev time."> Language Service </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/security" title="Developing for content security in Angular applications."> Security </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Setup and Deployment" aria-pressed="false"> Setup &amp; Deployment <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/setup" title="Install the Angular QuickStart seed for faster, more efficient development on your machine."> Setup for local development </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/setup-systemjs-anatomy" title="Inside the local development environment for SystemJS."> Anatomy of the Setup </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/browser-support" title="Browser support and polyfills guide."> Browser Support </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/npm-packages" title="Recommended npm packages, and how to specify package dependencies."> Npm Packages </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/typescript-configuration" title="TypeScript configuration for Angular developers."> TypeScript Configuration </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/aot-compiler" title="Learn why and how to use the Ahead-of-Time (AOT) compiler."> Ahead-of-Time Compilation </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/deployment" title="Learn how to deploy your Angular app."> Deployment </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Angular service workers: Controlling caching of application resources." aria-pressed="false"> Service Workers <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/service-worker-intro" title="Angular&#39;s implementation of service workers improves user experience with slow or unreliable network connectivity."> Introduction </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/service-worker-getting-started" title="Enabling the service worker in a CLI project and observing behavior in the browser."> Getting Started </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/service-worker-communications" title="Services that enable you to interact with an Angular service worker."> Service Worker Communication </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/service-worker-devops" title="Running applications with service workers, managing application update, debugging, and killing applications."> Service Worker in Production </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/service-worker-config" title="Configuring service worker caching behavior."> Service Worker Configuration </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Angular release practices, planning for updates, and update resources." aria-pressed="false"> Keeping Up-to-Date <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/updating" title="Information about updating Angular applications and libraries to the latest version."> Updating Your Projects </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/releases" title="Angular versioning, release, support, and deprecation policies and practices."> Angular Releases </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><!----><div class="ng-star-inserted"><!----><!----><button class="vertical-menu-item heading ng-star-inserted level-2 collapsed" type="button" title="Incrementally upgrade an AngularJS application to Angular." aria-pressed="false"> Upgrading from AngularJS <mat-icon class="rotating-icon mat-icon" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><div class="heading-children level-2 collapsed"><!----><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/upgrade" title="Incrementally upgrade an AngularJS application to Angular."> Upgrading Instructions </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/upgrade-performance" title="Upgrade from AngularJS to Angular in a more flexible way."> Upgrading for Performance </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-3 collapsed" href="https://angular.io/guide/ajs-quick-reference" title="Learn how AngularJS concepts and techniques map to Angular."> AngularJS-Angular Concepts </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/universal" title="Render HTML server-side with Angular Universal."> Server-side Rendering </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/visual-studio-2015" title="Use Visual Studio 2015 with the QuickStart files."> Visual Studio 2015 QuickStart </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/styleguide" title="Write Angular with style."> Style Guide </a></div><!----></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-2 collapsed" href="https://angular.io/guide/glossary" title="Brief definitions of the most important words in the Angular vocabulary."> Glossary </a></div><!----></aio-nav-item></div></div></aio-nav-item><aio-nav-item class="ng-star-inserted"><!----><div class="ng-star-inserted"><a class="vertical-menu-item level-1 collapsed" href="https://angular.io/api" title="Details of the Angular classes and values."> API </a></div><!----></aio-nav-item></aio-nav-menu><div class="doc-version"><aio-select><div class="form-select-menu"><button class="form-select-button"><strong></strong><!---->stable (v6.1.6) </button><!----></div></aio-select></div></mat-sidenav><div tabindex="-1" class="cdk-visually-hidden cdk-focus-trap-anchor"></div><!----><mat-sidenav-content cdkscrollable="" class="mat-drawer-content mat-sidenav-content ng-star-inserted" style="margin-left: 268px; margin-right: 0px;"><section class="sidenav-content" role="content" id="guide-quickstart"><aio-mode-banner><!----></aio-mode-banner><aio-doc-viewer class=""><div style="opacity: 1; transition: all 200ms ease-in-out 0s;">
+<div class="content">
+<h1 id="quickstart">QuickStart<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#quickstart"><i class="material-icons">link</i></a></h1><aio-toc class="embedded" ng-version="6.0.0"><!----><div class="toc-inner no-print collapsed ng-star-inserted"><!----><!----><button aria-label="Expand/collapse contents" class="toc-heading embedded secondary ng-star-inserted" title="Expand/collapse contents" type="button" aria-pressed="false"> Contents <mat-icon class="rotating-icon mat-icon collapsed" role="img" svgicon="keyboard_arrow_right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 24 24"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg></mat-icon></button><ul class="toc-list embedded"><!----><!----><!----><!----><!----><!----><li title="Step 1. Set up the Development Environment
+link" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#devenv">Step 1. Set up the Development Environment</a></li><!----><!----><!----><li title="Step 2. Create a new project
+link" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#create-proj">Step 2. Create a new project</a></li><!----><!----><!----><li title="Step 3: Serve the application
+link" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#serve">Step 3: Serve the application</a></li><!----><!----><!----><li title="Step 4: Edit your first Angular component
+link" class="h2 secondary ng-star-inserted"><a href="https://angular.io/guide/quickstart#first-component">Step 4: Edit your first Angular component</a></li><!----><!----><!----><li title="What&#39;s next?link" class="h2 secondary ng-star-inserted"><a href="https://angular.io/guide/quickstart#whats-next">What's next?</a></li><!----><!----><!----><li title="Project file reviewlink" class="h2 secondary ng-star-inserted"><a href="https://angular.io/guide/quickstart#project-file-review">Project file review</a></li><!----><!----><!----><li title="The src folderlink" class="h3 secondary ng-star-inserted"><a href="https://angular.io/guide/quickstart#the-src-folder">The <code>src</code> folder</a></li><!----><!----><!----><li title="The root folderlink" class="h3 secondary ng-star-inserted"><a href="https://angular.io/guide/quickstart#the-root-folder">The root folder</a></li><!----><!----><!----><li title="Next Steplink" class="h3 secondary ng-star-inserted"><a href="https://angular.io/guide/quickstart#next-step">Next Step</a></li><!----></ul><!----><button aria-label="Expand/collapse contents" class="toc-more-items embedded material-icons collapsed ng-star-inserted" title="Expand/collapse contents" type="button" aria-pressed="false"></button></div></aio-toc>
+<p>Good tools make application development quicker and easier to maintain than
+if you did everything by hand.</p>
+<p>The <a href="https://cli.angular.io/"><strong>Angular CLI</strong></a> is a <strong><em>command line interface</em></strong> tool
+that can create a project, add files, and perform a variety of ongoing development tasks such
+as testing, bundling, and deployment.</p>
+<p>The goal in this guide is to build and run a simple Angular
+application in TypeScript, using the Angular CLI
+while adhering to the <a href="https://angular.io/guide/styleguide">Style Guide</a> recommendations that
+benefit <em>every</em> Angular project.</p>
+<p>By the end of the chapter, you'll have a basic understanding of development with the CLI
+and a foundation for both these documentation samples and for real world applications.</p>
+<p>And you can also <a href="https://angular.io/generated/zips/cli-quickstart/cli-quickstart.zip" target="_blank">download the example.</a></p>
+<h2 id="devenv">
+  Step 1. Set up the Development Environment
+<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#devenv"><i class="material-icons">link</i></a></h2>
+<p>You need to set up your development environment before you can do anything.</p>
+<p>Install <strong><a href="https://nodejs.org/en/download/">Node.js® and npm</a></strong>
+if they are not already on your machine.</p>
+<div class="alert is-helpful">
+<p><strong>Verify that you are running at least Node.js version <code>8.x</code> or greater and npm version <code>5.x</code> or greater</strong>
+by running <code>node -v</code> and <code>npm -v</code> in a terminal/console window.
+Older versions produce errors, but newer versions are fine.</p>
+</div>
+<p>Then install the <a href="https://github.com/angular/angular-cli">Angular CLI</a> globally.</p>
+<code-example language="sh" class="code-shell" ng-version="6.0.0"><div style="display: none">
+  npm install -g @angular/cli
+
+</div><!----><aio-code><pre class="prettyprint lang-sh">      <!----><button class="material-icons copy-button no-print ng-star-inserted" title="Copy code snippet" aria-label="">
+        <span aria-hidden="true">content_copy</span>
+      </button>
+      <code class="animated fadeIn"><span class="pln">npm install </span><span class="pun">-</span><span class="pln">g </span><span class="lit">@angular</span><span class="pun">/</span><span class="pln">cli</span></code>
+    </pre></aio-code></code-example>
+<h2 id="create-proj">
+  Step 2. Create a new project
+<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#create-proj"><i class="material-icons">link</i></a></h2>
+<p>Open a terminal window.</p>
+<p>Generate a new project and default app by running the following command:</p>
+<code-example language="sh" class="code-shell" ng-version="6.0.0"><div style="display: none">
+  ng new my-app
+
+</div><!----><aio-code><pre class="prettyprint lang-sh">      <!----><button class="material-icons copy-button no-print ng-star-inserted" title="Copy code snippet" aria-label="">
+        <span aria-hidden="true">content_copy</span>
+      </button>
+      <code class="animated fadeIn"><span class="pln">ng new my</span><span class="pun">-</span><span class="pln">app</span></code>
+    </pre></aio-code></code-example>
+<p>The Angular CLI installs the necessary npm packages, creates the project files, and populates the project with a simple default app. This can take some time.</p>
+<div class="alert is-helpful">
+<p>You can add pre-packaged functionality to a new project by using the <code>ng add</code> command. The <code>ng add</code> command transforms a project by applying the schematics in the specified package.
+For more information, see the <a href="https://github.com/angular/angular-cli/wiki/add" title="Angular CLI documentation">Angular CLI documentation.</a> </p>
+<p>Angular Material provides schematics for typical app layouts.
+See the <a href="https://material.angular.io/guides" title="Angular Material documentation">Angular Material documentation</a> for details.</p>
+</div>
+<h2 id="serve">
+  Step 3: Serve the application
+<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#serve"><i class="material-icons">link</i></a></h2>
+<p>Go to the project directory and launch the server.</p>
+<code-example language="sh" class="code-shell" ng-version="6.0.0"><div style="display: none">
+  cd my-app
+  ng serve --open
+</div><!----><aio-code><pre class="prettyprint lang-sh">      <!----><button class="material-icons copy-button no-print ng-star-inserted" title="Copy code snippet" aria-label="">
+        <span aria-hidden="true">content_copy</span>
+      </button>
+      <code class="animated fadeIn"><span class="pln">cd my</span><span class="pun">-</span><span class="pln">app
+ng serve </span><span class="pun">--</span><span class="pln">open</span></code>
+    </pre></aio-code></code-example>
+<p>The <code>ng serve</code> command launches the server, watches your files,
+and rebuilds the app as you make changes to those files.</p>
+<p>Using the <code>--open</code> (or just <code>-o</code>) option will automatically open your browser
+on <code>http://localhost:4200/</code>.</p>
+<p>Your app greets you with a message:</p>
+<figure>
+  <img src="./Angular - QuickStart_files/app-works.png" alt="The app works!" width="297" height="348">
+</figure>
+<h2 id="first-component">
+  Step 4: Edit your first Angular component
+<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#first-component"><i class="material-icons">link</i></a></h2>
+<p>The CLI created the first Angular component for you.
+This is the <em>root component</em> and it is named <code>app-root</code>.
+You can find it in <code>./src/app/app.component.ts</code>.</p>
+<p>Open the component file and change the <code>title</code> property from <code>'app'</code> to <code>'My First Angular App!'</code>.</p>
+<code-example path="cli-quickstart/src/app/app.component.ts" region="title" title="src/app/app.component.ts" linenums="false" ng-version="6.0.0"><div style="display: none">
+export class AppComponent {
+  title = 'My First Angular App!';
+}
+
+</div><!----><header class="ng-star-inserted">src/app/app.component.ts</header><aio-code class="headed-code"><pre class="prettyprint lang-">      <!----><button class="material-icons copy-button no-print ng-star-inserted" title="Copy code snippet" aria-label="Copy code snippet from src/app/app.component.ts">
+        <span aria-hidden="true">content_copy</span>
+      </button>
+      <code class="animated fadeIn"><span class="kwd">export</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">AppComponent</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  title </span><span class="pun">=</span><span class="pln"> </span><span class="str">'My First Angular App!'</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code>
+    </pre></aio-code></code-example>
+<p>The browser reloads automatically with the revised title. That's nice, but it could look better.</p>
+<p>Open <code>src/app/app.component.css</code> and give the component some style.</p>
+<code-example path="cli-quickstart/src/app/app.component.css" title="src/app/app.component.css" linenums="false" ng-version="6.0.0"><div style="display: none">
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+
+</div><!----><header class="ng-star-inserted">src/app/app.component.css</header><aio-code class="headed-code"><pre class="prettyprint lang-">      <!----><button class="material-icons copy-button no-print ng-star-inserted" title="Copy code snippet" aria-label="Copy code snippet from src/app/app.component.css">
+        <span aria-hidden="true">content_copy</span>
+      </button>
+      <code class="animated fadeIn"><span class="pln">h1 </span><span class="pun">{</span><span class="pln">
+  color</span><span class="pun">:</span><span class="pln"> </span><span class="com">#369;</span><span class="pln">
+  font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Helvetica</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln">
+  font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">250</span><span class="pun">%;</span><span class="pln">
+</span><span class="pun">}</span></code>
+    </pre></aio-code></code-example>
+<figure>
+  <img src="./Angular - QuickStart_files/my-first-app.png" alt="Output of QuickStart app" width="689" height="66">
+</figure>
+<p>Looking good!</p>
+<h2 id="whats-next">What's next?<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#whats-next"><i class="material-icons">link</i></a></h2>
+<p>That's about all you'd expect to do in a "Hello, World" app.</p>
+<p>You're ready to take the <a href="https://angular.io/tutorial">Tour of Heroes Tutorial</a> and build
+a small application that demonstrates the great things you can build with Angular.</p>
+<p>Or you can stick around a bit longer to learn about the files in your brand new project.</p>
+<h2 id="project-file-review">Project file review<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#project-file-review"><i class="material-icons">link</i></a></h2>
+<p>An Angular CLI project is the foundation for both quick experiments and enterprise solutions.</p>
+<p>The first file you should check out is <code>README.md</code>.
+It has some basic information on how to use CLI commands.
+Whenever you want to know more about how Angular CLI works make sure to visit
+<a href="https://github.com/angular/angular-cli">the Angular CLI repository</a> and
+<a href="https://github.com/angular/angular-cli/wiki">Wiki</a>.</p>
+<p>Some of the generated files might be unfamiliar to you.</p>
+<h3 id="the-src-folder">The <code>src</code> folder<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#the-src-folder"><i class="material-icons">link</i></a></h3>
+<p>Your app lives in the <code>src</code> folder.
+All Angular components, templates, styles, images, and anything else your app needs go here.
+Any files outside of this folder are meant to support building your app.</p>
+<div class="filetree">
+  <div class="file">src</div>
+  <div class="children">
+    <div class="file">app</div>
+    <div class="children">
+      <div class="file">app.component.css</div>
+      <div class="file">app.component.html</div>
+      <div class="file">app.component.spec.ts</div>
+      <div class="file">app.component.ts</div>
+      <div class="file">app.module.ts</div>
+    </div>
+    <div class="file">assets</div>
+    <div class="children">
+      <div class="file">.gitkeep</div>
+    </div>
+    <div class="file">environments</div>
+    <div class="children">
+      <div class="file">environment.prod.ts</div>
+      <div class="file">environment.ts</div>
+    </div>
+    <div class="file">browserslist</div>
+    <div class="file">favicon.ico</div>
+    <div class="file">index.html</div>
+    <div class="file">karma.conf.js</div>
+    <div class="file">main.ts</div>
+    <div class="file">polyfills.ts</div>
+    <div class="file">styles.css</div>
+    <div class="file">test.ts</div>
+    <div class="file">tsconfig.app.json</div>
+    <div class="file">tsconfig.spec.json</div>
+    <div class="file">tslint.json</div>
+  </div>
+</div>
+<style>
+  td, th {vertical-align: top}
+</style>
+<table width="100%">
+  <colgroup><col width="20%">
+  
+  <col width="80%">
+  
+  </colgroup><tbody><tr>
+    <th>
+      File
+    </th>
+    <th>
+      Purpose
+    </th>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>app/app.component.{ts,html,css,spec.ts}</code></p>
+    </td>
+    <td>
+<p>      Defines the <code>AppComponent</code> along with an HTML template, CSS stylesheet, and a unit test.
+It is the <strong>root</strong> component of what will become a tree of nested components
+as the application evolves.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>app/app.module.ts</code></p>
+    </td>
+    <td>
+<p>      Defines <code>AppModule</code>, the <a href="https://angular.io/guide/bootstrapping" title="AppModule: the root module">root module</a> that tells Angular how to assemble the application.
+Right now it declares only the <code>AppComponent</code>.
+Soon there will be more components to declare.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>assets/*</code></p>
+    </td>
+    <td>
+<p>      A folder where you can put images and anything else to be copied wholesale
+when you build your application.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>environments/*</code></p>
+    </td>
+    <td>
+<p>      This folder contains one file for each of your destination environments,
+each exporting simple configuration variables to use in your application.
+The files are replaced on-the-fly when you build your app.
+You might use a different API endpoint for development than you do for production
+or maybe different analytics tokens.
+You might even use some mock services.
+Either way, the CLI has you covered.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>browserslist</code></p>
+    </td>
+    <td>
+<p>      A configuration file to share <a href="https://github.com/browserslist/browserslist">target browsers</a> between different front-end tools.</p>
+    </td>
+  </tr>  
+  <tr>
+    <td>
+<p>      <code>favicon.ico</code></p>
+    </td>
+    <td>
+<p>      Every site wants to look good on the bookmark bar.
+Get started with your very own Angular icon.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>index.html</code></p>
+    </td>
+    <td>
+<p>      The main HTML page that is served when someone visits your site.
+Most of the time you'll never need to edit it.
+The CLI automatically adds all <code>js</code> and <code>css</code> files when building your app so you
+never need to add any <code>&lt;script&gt;</code> or <code>&lt;link&gt;</code> tags here manually.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>karma.conf.js</code></p>
+    </td>
+    <td>
+<p>      Unit test configuration for the <a href="https://karma-runner.github.io/">Karma test runner</a>,
+used when running <code>ng test</code>.</p>
+    </td>
+  </tr>  
+  <tr>
+    <td>
+<p>      <code>main.ts</code></p>
+    </td>
+    <td>
+<p>      The main entry point for your app.
+Compiles the application with the <a href="https://angular.io/guide/glossary#jit">JIT compiler</a>
+and bootstraps the application's root module (<code>AppModule</code>) to run in the browser.
+You can also use the <a href="https://angular.io/guide/aot-compiler">AOT compiler</a>
+without changing any code by appending the<code>--aot</code> flag to the <code>ng build</code> and <code>ng serve</code> commands.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>polyfills.ts</code></p>
+    </td>
+    <td>
+<p>      Different browsers have different levels of support of the web standards.
+Polyfills help normalize those differences.
+You should be pretty safe with <code>core-js</code> and <code>zone.js</code>, but be sure to check out
+the <a href="https://angular.io/guide/browser-support">Browser Support guide</a> for more information.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>styles.css</code></p>
+    </td>
+    <td>
+<p>      Your global styles go here.
+Most of the time you'll want to have local styles in your components for easier maintenance,
+but styles that affect all of your app need to be in a central place.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>test.ts</code></p>
+    </td>
+    <td>
+<p>      This is the main entry point for your unit tests.
+It has some custom configuration that might be unfamiliar, but it's not something you'll
+need to edit.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>tsconfig.{app|spec}.json</code></p>
+    </td>
+    <td>
+<p>      TypeScript compiler configuration for the Angular app (<code>tsconfig.app.json</code>)
+and for the unit tests (<code>tsconfig.spec.json</code>).</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>tslint.json</code></p>
+    </td>
+    <td>
+<p>      Additional Linting configuration for <a href="https://palantir.github.io/tslint/">TSLint</a> together with
+<a href="http://codelyzer.com/">Codelyzer</a>, used when running <code>ng lint</code>.
+Linting helps keep your code style consistent.</p>
+    </td>
+  </tr>  
+</tbody></table>
+<h3 id="the-root-folder">The root folder<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#the-root-folder"><i class="material-icons">link</i></a></h3>
+<p>The <code>src/</code> folder is just one of the items inside the project's root folder.
+Other files help you build, test, maintain, document, and deploy the app.
+These files go in the root folder next to <code>src/</code>.</p>
+<div class="filetree">
+  <div class="file">my-app</div>
+  <div class="children">
+    <div class="file">e2e</div>
+    <div class="children">
+      <div class="file">src</div>
+      <div class="children">
+        <div class="file">app.e2e-spec.ts</div>
+        <div class="file">app.po.ts</div>
+      </div>      
+      <div class="file">tsconfig.e2e.json</div>
+      <div class="file">protractor.conf.js</div>
+    </div>
+    <div class="file">node_modules/...</div>
+    <div class="file">src/...</div>
+    <div class="children">
+      <div class="file">karma.conf.js</div>
+    </div>    
+    <div class="file">.editorconfig</div>
+    <div class="file">.gitignore</div>
+    <div class="file">angular.json</div>
+    <div class="file">package.json</div>
+    <div class="file">README.md</div>
+    <div class="file">tsconfig.json</div>
+    <div class="file">tslint.json</div>
+  </div>
+</div>
+<style>
+  td, th {vertical-align: top}
+</style>
+<table width="100%">
+  <colgroup><col width="20%">
+  
+  <col width="80%">
+  
+  </colgroup><tbody><tr>
+    <th>
+      File
+    </th>
+    <th>
+      Purpose
+    </th>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>e2e/</code></p>
+    </td>
+    <td>
+<p>      Inside <code>e2e/</code> live the end-to-end tests.
+They shouldn't be inside <code>src/</code> because e2e tests are really a separate app that
+just so happens to test your main app.
+That's also why they have their own <code>tsconfig.e2e.json</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>node_modules/</code></p>
+    </td>
+    <td>
+<p>      <code>Node.js</code> creates this folder and puts all third party modules listed in
+<code>package.json</code> inside of it.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>.editorconfig</code></p>
+    </td>
+    <td>
+<p>      Simple configuration for your editor to make sure everyone that uses your project
+has the same basic configuration.
+Most editors support an <code>.editorconfig</code> file.
+See <a href="http://editorconfig.org/">http://editorconfig.org</a> for more information.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>.gitignore</code></p>
+    </td>
+    <td>
+<p>      Git configuration to make sure autogenerated files are not committed to source control.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>angular.json</code></p>
+    </td>
+    <td>
+<p>      Configuration for Angular CLI.
+In this file you can set several defaults and also configure what files are included
+when your project is built.
+Check out the official documentation if you want to know more.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>package.json</code></p>
+    </td>
+    <td>
+<p>      <code>npm</code> configuration listing the third party packages your project uses.
+You can also add your own <a href="https://docs.npmjs.com/misc/scripts">custom scripts</a> here.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>protractor.conf.js</code></p>
+    </td>
+    <td>
+<p>      End-to-end test configuration for <a href="http://www.protractortest.org/">Protractor</a>,
+used when running <code>ng e2e</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>README.md</code></p>
+    </td>
+    <td>
+<p>      Basic documentation for your project, pre-filled with CLI command information.
+Make sure to enhance it with project documentation so that anyone
+checking out the repo can build your app!</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>tsconfig.json</code></p>
+    </td>
+    <td>
+<p>      TypeScript compiler configuration for your IDE to pick up and give you helpful tooling.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>      <code>tslint.json</code></p>
+    </td>
+    <td>
+<p>      Linting configuration for <a href="https://palantir.github.io/tslint/">TSLint</a> together with
+<a href="http://codelyzer.com/">Codelyzer</a>, used when running <code>ng lint</code>.
+Linting helps keep your code style consistent.</p>
+    </td>
+  </tr>
+</tbody></table>
+<div class="alert is-helpful">
+<h3 id="next-step">Next Step<a title="Link to this heading" class="header-link" aria-hidden="true" href="https://angular.io/guide/quickstart#next-step"><i class="material-icons">link</i></a></h3>
+<p>If you're new to Angular, continue with the
+<a href="https://angular.io/tutorial" title="Tour of Heroes tutorial">tutorial</a>.
+You can skip the "Setup" step since you're already using the Angular CLI setup.</p>
+</div>
+
+</div>
+<!-- links to this doc:
+ - docs
+ - features
+ - guide/attribute-directives
+ - guide/displaying-data
+ - guide/glossary
+ - guide/setup
+ - index
+-->
+<!-- links from this doc:
+ - generated/zips/cli-quickstart/cli-quickstart.zip
+ - guide/aot-compiler
+ - guide/bootstrapping
+ - guide/browser-support
+ - guide/glossary#jit
+ - guide/quickstart#create-proj
+ - guide/quickstart#devenv
+ - guide/quickstart#first-component
+ - guide/quickstart#next-step
+ - guide/quickstart#project-file-review
+ - guide/quickstart#quickstart
+ - guide/quickstart#serve
+ - guide/quickstart#the-root-folder
+ - guide/quickstart#the-src-folder
+ - guide/quickstart#whats-next
+ - guide/styleguide
+ - tutorial
+ - http://codelyzer.com/
+ - http://editorconfig.org
+ - http://www.protractortest.org/
+ - https://cli.angular.io/
+ - https://docs.npmjs.com/misc/scripts
+ - https://github.com/angular/angular-cli
+ - https://github.com/angular/angular-cli/wiki
+ - https://github.com/angular/angular-cli/wiki/add
+ - https://github.com/browserslist/browserslist
+ - https://karma-runner.github.io
+ - https://material.angular.io/guides
+ - https://nodejs.org/en/download/
+ - https://palantir.github.io/tslint/
+--></div></aio-doc-viewer><aio-dt><!----></aio-dt></section></mat-sidenav-content></mat-sidenav-container><!----><div class="toc-container no-print ng-star-inserted" style="max-height: 6383px;"><aio-lazy-ce selector="aio-toc"><aio-toc ng-version="6.0.0"><!----><div class="toc-inner no-print collapsed ng-star-inserted"><!----><!----><ul class="toc-list"><!----><!----><!----><li title="QuickStartlink" class="h1 ng-star-inserted"><a href="https://angular.io/guide/quickstart#quickstart">QuickStart</a></li><!----><!----><!----><li title="Step 1. Set up the Development Environment
+link" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#devenv">Step 1. Set up the Development Environment</a></li><!----><!----><!----><li title="Step 2. Create a new project
+link" class="h2 ng-star-inserted active"><a href="https://angular.io/guide/quickstart#create-proj">Step 2. Create a new project</a></li><!----><!----><!----><li title="Step 3: Serve the application
+link" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#serve">Step 3: Serve the application</a></li><!----><!----><!----><li title="Step 4: Edit your first Angular component
+link" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#first-component">Step 4: Edit your first Angular component</a></li><!----><!----><!----><li title="What&#39;s next?link" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#whats-next">What's next?</a></li><!----><!----><!----><li title="Project file reviewlink" class="h2 ng-star-inserted"><a href="https://angular.io/guide/quickstart#project-file-review">Project file review</a></li><!----><!----><!----><li title="The src folderlink" class="h3 ng-star-inserted"><a href="https://angular.io/guide/quickstart#the-src-folder">The <code>src</code> folder</a></li><!----><!----><!----><li title="The root folderlink" class="h3 ng-star-inserted"><a href="https://angular.io/guide/quickstart#the-root-folder">The root folder</a></li><!----><!----><!----><li title="Next Steplink" class="h3 ng-star-inserted"><a href="https://angular.io/guide/quickstart#next-step">Next Step</a></li><!----></ul><!----></div></aio-toc></aio-lazy-ce></div><footer class="no-print"><aio-footer><div class="grid-fluid"><!----><div class="footer-block ng-star-inserted"><h3>Resources</h3><ul><!----><li class="ng-star-inserted"><a class="link" href="https://angular.io/about" title="Angular contributors.">About</a></li><li class="ng-star-inserted"><a class="link" href="https://angular.io/resources" title="Angular tools, training, and blogs from around the web.">Resource Listing</a></li><li class="ng-star-inserted"><a class="link" href="https://angular.io/presskit" title="Press contacts, logos, and branding.">Press Kit</a></li><li class="ng-star-inserted"><a class="link" href="https://blog.angular.io/" title="Angular Blog">Blog</a></li></ul></div><div class="footer-block ng-star-inserted"><h3>Help</h3><ul><!----><li class="ng-star-inserted"><a class="link" href="https://stackoverflow.com/questions/tagged/angular" title="Stack Overflow: where the community answers your technical Angular questions.">Stack Overflow</a></li><li class="ng-star-inserted"><a class="link" href="https://gitter.im/angular/angular" title="Chat about Angular with other birds of a feather.">Gitter</a></li><li class="ng-star-inserted"><a class="link" href="https://github.com/angular/angular/issues" title="Post issues and suggestions on github.">Report Issues</a></li><li class="ng-star-inserted"><a class="link" href="https://github.com/angular/code-of-conduct/blob/master/CODE_OF_CONDUCT.md" title="Treating each other with respect.">Code of Conduct</a></li></ul></div><div class="footer-block ng-star-inserted"><h3>Community</h3><ul><!----><li class="ng-star-inserted"><a class="link" href="https://angular.io/events" title="Post issues and suggestions on github.">Events</a></li><li class="ng-star-inserted"><a class="link" href="http://www.meetup.com/topics/angularjs/" title="Attend a meetup and learn from fellow developers.">Meetups</a></li><li class="ng-star-inserted"><a class="link" href="https://twitter.com/angular" title="Twitter">Twitter</a></li><li class="ng-star-inserted"><a class="link" href="https://github.com/angular/angular" title="GitHub">GitHub</a></li><li class="ng-star-inserted"><a class="link" href="https://angular.io/contribute" title="Contribute to Angular">Contribute</a></li></ul></div><div class="footer-block ng-star-inserted"><h3>Languages</h3><ul><!----><li class="ng-star-inserted"><a class="link" href="https://angular.cn/" title="中文版">中文版</a></li><li class="ng-star-inserted"><a class="link" href="https://angular.jp/" title="日本語版">日本語版</a></li></ul></div></div><p> Powered by Google ©2010-2018. Code licensed under an <a href="https://angular.io/license" title="License text">MIT-style License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. </p><p> Version 6.1.7-build.48614+sha.4a8d56a. </p></aio-footer></footer></aio-shell>
+
+  <noscript>
+    <div class="background-sky hero"></div>
+    <section id="intro">
+      <div class="hero-logo">
+        <img src="assets/images/logos/angular/angular.svg" width="250" height="250">
+      </div>
+      <div class="homepage-container">
+        <div class="hero-headline">One framework.<br>Mobile &amp; desktop.</div>
+      </div>
+    </section>
+    <h2 style="color: red; text-align: center; margin-top: -50px;">
+      <b><i>This website requires JavaScript.</i></b>
+    </h2>
+  </noscript>
+
+
+<script type="text/javascript" src="./Angular - QuickStart_files/runtime.fd02627f8a88dab7c249.js"></script><script type="text/javascript" src="./Angular - QuickStart_files/polyfills.e0d2c3e02a83a3cfb1a1.js"></script><script type="text/javascript" src="./Angular - QuickStart_files/main.a30d1f5defd0ea6d0630.js"></script><div class="cdk-visually-hidden" aria-atomic="true" aria-live="polite"></div></body></html>
